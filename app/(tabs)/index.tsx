@@ -1,22 +1,15 @@
-import React, { useState } from 'react';
-import { TextInput, Button, FlatList, View } from 'react-native';
+import React from 'react';
+import { TextInput, Button } from 'react-native';
 import { styles } from '../../styles';
-
+import { useColorScheme } from 'react-native';
+import { useItemManager } from '../../hooks/useItemManager';
+import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
-  const [itemName, setItemName] = useState('');
-  const [itemPrice, setItemPrice] = useState('');
-  const [items, setItems] = useState<{ name: string; price: number; id: string }[]>([]);
-
-  const addItem = () => {
-    if (itemName && itemPrice) {
-      setItems([...items, { name: itemName, price: parseFloat(itemPrice), id: Date.now().toString() }]);
-      setItemName('');
-      setItemPrice('');
-    }
-  };
+  const { itemName, setItemName, itemPrice, setItemPrice, items, addItem } = useItemManager();
+  const theme = useColorScheme();
 
   return (
     <ThemedView style={styles.container}>
@@ -26,27 +19,20 @@ export default function HomeScreen() {
       <TextInput
         style={styles.input}
         placeholder="Item Name"
+        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={itemName}
         onChangeText={setItemName}
       />
       <TextInput
         style={styles.input}
         placeholder="Item Price"
+        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={itemPrice}
         onChangeText={setItemPrice}
         keyboardType="numeric"
       />
       <Button title="Add Item" onPress={addItem} />
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <ThemedText>{item.name}</ThemedText>
-            <ThemedText>${item.price.toFixed(2)}</ThemedText>
-          </View>
-        )}
-      />
+      <ItemList items={items} />
     </ThemedView>
   );
 }
