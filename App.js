@@ -1,47 +1,36 @@
-import React, { useState } from 'react';
-import { Text, View, TextInput, Button, FlatList } from 'react-native';
+import React from 'react';
+import { TextInput, Button } from 'react-native';
 import { styles } from './styles';
+import { useItemManager } from './hooks/useItemManager';
+import { ItemList } from './components/ItemList';
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
 
 export default function App() {
-  const [itemName, setItemName] = useState('');
-  const [itemPrice, setItemPrice] = useState('');
-  const [items, setItems] = useState([]);
-
-  const addItem = () => {
-    if (itemName && itemPrice) {
-      setItems([...items, { name: itemName, price: parseFloat(itemPrice), id: Date.now().toString() }]);
-      setItemName('');
-      setItemPrice('');
-    }
-  };
+  const { itemName, setItemName, itemPrice, setItemPrice, items, addItem } = useItemManager();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>BrokeNoMore</Text>
+    <ThemedView style={styles.container}>
+      <ThemedText type="title" style={styles.header}>
+        BrokeNoMore
+      </ThemedText>
       <TextInput
         style={styles.input}
         placeholder="Item Name"
+        placeholderTextColor="#aaa"
         value={itemName}
         onChangeText={setItemName}
       />
       <TextInput
         style={styles.input}
         placeholder="Item Price"
+        placeholderTextColor="#aaa"
         value={itemPrice}
         onChangeText={setItemPrice}
         keyboardType="numeric"
       />
       <Button title="Add Item" onPress={addItem} />
-      <FlatList
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View style={styles.item}>
-            <Text>{item.name}</Text>
-            <Text>${item.price.toFixed(2)}</Text>
-          </View>
-        )}
-      />
-    </View>
+      <ItemList items={items} />
+    </ThemedView>
   );
 }
