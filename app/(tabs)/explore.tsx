@@ -8,8 +8,16 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function ExploreScreen() {
-  const { paymentName, setPaymentName, paymentPrice, setPaymentPrice, payments, addPayment } =
-    useRecurringPaymentManager();
+  const {
+    paymentName,
+    setPaymentName,
+    paymentPrice,
+    setPaymentPrice,
+    paymentDate,
+    setPaymentDate,
+    processedPayments,
+    addPayment,
+  } = useRecurringPaymentManager();
   const theme = useColorScheme();
 
   return (
@@ -32,8 +40,20 @@ export default function ExploreScreen() {
         onChangeText={setPaymentPrice}
         keyboardType="numeric"
       />
+      <TextInput
+        style={styles.input}
+        placeholder="Payment Date (1-31)"
+        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
+        value={paymentDate ? paymentDate.toString() : ''}
+        onChangeText={(text) => setPaymentDate(Number(text))}
+        keyboardType="numeric"
+      />
       <Button title="Add Payment" onPress={addPayment} />
-      <ItemList items={payments} />
+      {processedPayments.length > 0 ? (
+        <ItemList items={processedPayments} />
+      ) : (
+        <ThemedText>No monthly payments yet.</ThemedText>
+      )}
     </ThemedView>
   );
 }
