@@ -10,14 +10,8 @@ import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
   const { itemName, setItemName, itemPrice, setItemPrice, items, addItem } = useItemManager();
-  const { processedPayments, monthlyPayments, addPayment } = useRecurringPaymentManager();
+  const { processedPayments } = useRecurringPaymentManager();
   const theme = useColorScheme();
-
-  useEffect(() => {
-    const currentDate = new Date().getDate();
-    const newProcessedPayments = monthlyPayments.filter(payment => payment.date === currentDate);
-    processedPayments.push(...newProcessedPayments);
-  }, [monthlyPayments]);
 
   return (
     <ThemedView style={styles.container}>
