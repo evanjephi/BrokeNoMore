@@ -3,55 +3,54 @@ import { useState, useEffect } from 'react';
 export function useRecurringPaymentManager() {
   const [paymentName, setPaymentName] = useState('');
   const [paymentPrice, setPaymentPrice] = useState('');
-  const [payments, setPayments] = useState<{ name: string; price: number; id: string }[]>([]);
-  const [recurringPayments, setRecurringPayments] = useState<
+  const [paymentDate, setPaymentDate] = useState<number | null>(null); // Store the date of the month
+  const [monthlyPayments, setMonthlyPayments] = useState<
     { name: string; price: number; date: number; id: string }[]
+  >([]);
+  const [processedPayments, setProcessedPayments] = useState<
+    { name: string; price: number; id: string }[]
   >([]);
 
   const addPayment = () => {
-    if (paymentName && paymentPrice) {
-      setRecurringPayments([
-        ...recurringPayments,
+    if (paymentName && paymentPrice && paymentDate) {
+      setMonthlyPayments([
+        ...monthlyPayments,
         {
           name: paymentName,
           price: parseFloat(paymentPrice),
-          date: new Date().getDate(), // Default to today's date
+          date: paymentDate,
           id: Date.now().toString(),
         },
       ]);
       setPaymentName('');
       setPaymentPrice('');
+      setPaymentDate(null);
     }
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const today = new Date();
-      const todayDate = today.getDate();
+    const today = new Date();
+    const todayDate = today.getDate();
 
-      const newPayments = recurringPayments.filter((payment) => {
-        if (payment.date === todayDate) {
-          setPayments((prev) => [
-            ...prev,
-            { name: payment.name, price: payment.price, id: Date.now().toString() },
-          ]);
-          return true;
-        }
-        return false;
-      });
+    const newProcessedPayments = monthlyPayments.filter((payment) => payment.date === todayDate);
+    const newPayments = newProcessedPayments.map((payment) => ({
+      name: payment.name,
+      price: payment.price,
+      id: Date.now().toString(),
+    }));
 
-      // Optionally log or handle newPayments if needed
-    }, 24 * 60 * 60 * 1000); // Check once a day
-
-    return () => clearInterval(interval);
-  }, [recurringPayments]);
+    setProcessedPayments((prev) => [...prev, ...newPayments]);
+  }, [monthlyPayments]);
 
   return {
     paymentName,
     setPaymentName,
     paymentPrice,
     setPaymentPrice,
-    payments,
+    paymentDate,
+    setPaymentDate,
+    monthlyPayments,
+    processedPayments,
     addPayment,
   };
 }
