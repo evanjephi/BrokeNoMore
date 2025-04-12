@@ -32,14 +32,25 @@ export function useRecurringPaymentManager() {
     const today = new Date();
     const todayDate = today.getDate();
 
+    // Filter payments that match today's date
     const newProcessedPayments = monthlyPayments.filter((payment) => payment.date === todayDate);
-    const newPayments = newProcessedPayments.map((payment) => ({
-      name: payment.name,
-      price: payment.price,
-      id: Date.now().toString(),
-    }));
 
-    setProcessedPayments((prev) => [...prev, ...newPayments]);
+    // Avoid duplicate entries in processedPayments
+    const uniquePayments = newProcessedPayments.filter(
+      (payment) => !processedPayments.some((p) => p.name === payment.name && p.price === payment.price)
+    );
+
+    // Add unique payments to processedPayments
+    if (uniquePayments.length > 0) {
+      setProcessedPayments((prev) => [
+        ...prev,
+        ...uniquePayments.map((payment) => ({
+          name: payment.name,
+          price: payment.price,
+          id: Date.now().toString(),
+        })),
+      ]);
+    }
   }, [monthlyPayments]);
 
   return {
