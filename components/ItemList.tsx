@@ -4,7 +4,7 @@ import { styles } from '../styles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-export function ItemList({ items }: { items: { name: string; price: number; id: string }[] }) {
+export function ItemList({ items }: { items: { name: string; price: number; date?: number; id: string }[] }) {
   return (
     <FlatList
       data={items}
@@ -13,6 +13,7 @@ export function ItemList({ items }: { items: { name: string; price: number; id: 
         <ThemedView style={styles.item}>
           <ThemedText>{item.name}</ThemedText>
           <ThemedText>${item.price.toFixed(2)}</ThemedText>
+          {item.date && <ThemedText>Date: {item.date}</ThemedText>}
         </ThemedView>
       )}
     />
