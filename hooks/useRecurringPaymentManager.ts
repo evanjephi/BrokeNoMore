@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function useRecurringPaymentManager() {
   const [paymentName, setPaymentName] = useState('');
   const [paymentPrice, setPaymentPrice] = useState('');
-  const [paymentDate, setPaymentDate] = useState<number | null>(null); // Store the date of the month
+  const [paymentDate, setPaymentDate] = useState<number | null>(null);
   const [monthlyPayments, setMonthlyPayments] = useState<
     { name: string; price: number; date: number; id: string }[]
   >([]);
@@ -11,9 +12,28 @@ export function useRecurringPaymentManager() {
     { name: string; price: number; id: string }[]
   >([]);
 
+  const loadMonthlyPayments = async () => {
+    try {
+      const storedPayments = await AsyncStorage.getItem('monthlyPayments');
+      if (storedPayments) {
+        setMonthlyPayments(JSON.parse(storedPayments));
+      }
+    } catch (error) {
+      console.error('Failed to load monthly payments from storage:', error);
+    }
+  };
+
+  const saveMonthlyPayments = async (newPayments: typeof monthlyPayments) => {
+    try {
+      await AsyncStorage.setItem('monthlyPayments', JSON.stringify(newPayments));
+    } catch (error) {
+      console.error('Failed to save monthly payments to storage:', error);
+    }
+  };
+
   const addPayment = () => {
     if (paymentName && paymentPrice && paymentDate) {
-      setMonthlyPayments([
+      const newPayments = [
         ...monthlyPayments,
         {
           name: paymentName,
@@ -21,7 +41,9 @@ export function useRecurringPaymentManager() {
           date: paymentDate,
           id: Date.now().toString(),
         },
-      ]);
+      ];
+      setMonthlyPayments(newPayments);
+      saveMonthlyPayments(newPayments);
       setPaymentName('');
       setPaymentPrice('');
       setPaymentDate(null);
@@ -29,18 +51,18 @@ export function useRecurringPaymentManager() {
   };
 
   useEffect(() => {
+    loadMonthlyPayments();
+  }, []);
+
+  useEffect(() => {
     const today = new Date();
     const todayDate = today.getDate();
 
-    // Filter payments that match today's date
     const newProcessedPayments = monthlyPayments.filter((payment) => payment.date === todayDate);
-
-    // Avoid duplicate entries in processedPayments
     const uniquePayments = newProcessedPayments.filter(
       (payment) => !processedPayments.some((p) => p.name === payment.name && p.price === payment.price)
     );
 
-    // Add unique payments to processedPayments
     if (uniquePayments.length > 0) {
       setProcessedPayments((prev) => [
         ...prev,
