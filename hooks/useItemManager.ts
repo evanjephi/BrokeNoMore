@@ -53,15 +53,19 @@ export function useItemManager() {
         name: payment.name,
         price: payment.price,
         date: todayString,
-        id: Date.now().toString(),
+        id: `${payment.id}-${todayString}`, // Ensure unique ID for recurring payments
       }));
 
     if (newRecurringItems.length > 0) {
-      const updatedItems = [...items, ...newRecurringItems];
+      // Avoid adding duplicate recurring payments for the same day
+      const updatedItems = [
+        ...items.filter((item) => !newRecurringItems.some((recurring) => recurring.id === item.id)),
+        ...newRecurringItems,
+      ];
       setItems(updatedItems);
       saveItems(updatedItems);
     }
-  }, [monthlyPayments]);
+  }, [monthlyPayments, items]);
 
   const groupedItems = items.reduce((groups, item) => {
     if (!groups[item.date]) {
