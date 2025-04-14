@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRecurringPaymentManager } from './useRecurringPaymentManager';
 
 export function useItemManager() {
   const [itemName, setItemName] = useState('');
   const [itemPrice, setItemPrice] = useState('');
   const [items, setItems] = useState<{ name: string; price: number; date: string; id: string }[]>([]);
+  const { monthlyPayments } = useRecurringPaymentManager();
 
   const loadItems = async () => {
     try {
@@ -36,6 +38,31 @@ export function useItemManager() {
     }
   };
 
+  useEffect(() => {
+    loadItems();
+  }, []);
+
+  useEffect(() => {
+    const today = new Date();
+    const todayDate = today.getDate();
+    const todayString = today.toISOString().split('T')[0];
+
+    const newRecurringItems = monthlyPayments
+      .filter((payment) => payment.date === todayDate)
+      .map((payment) => ({
+        name: payment.name,
+        price: payment.price,
+        date: todayString,
+        id: Date.now().toString(),
+      }));
+
+    if (newRecurringItems.length > 0) {
+      const updatedItems = [...items, ...newRecurringItems];
+      setItems(updatedItems);
+      saveItems(updatedItems);
+    }
+  }, [monthlyPayments]);
+
   const groupedItems = items.reduce((groups, item) => {
     if (!groups[item.date]) {
       groups[item.date] = [];
@@ -43,10 +70,6 @@ export function useItemManager() {
     groups[item.date].push(item);
     return groups;
   }, {} as Record<string, { name: string; price: number; date: string; id: string }[]>);
-
-  useEffect(() => {
-    loadItems();
-  }, []);
 
   return {
     itemName,

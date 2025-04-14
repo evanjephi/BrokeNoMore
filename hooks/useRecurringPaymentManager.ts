@@ -8,9 +8,6 @@ export function useRecurringPaymentManager() {
   const [monthlyPayments, setMonthlyPayments] = useState<
     { name: string; price: number; date: number; id: string }[]
   >([]);
-  const [processedPayments, setProcessedPayments] = useState<
-    { name: string; price: number; id: string }[]
-  >([]);
 
   const loadMonthlyPayments = async () => {
     try {
@@ -54,27 +51,6 @@ export function useRecurringPaymentManager() {
     loadMonthlyPayments();
   }, []);
 
-  useEffect(() => {
-    const today = new Date();
-    const todayDate = today.getDate();
-
-    const newProcessedPayments = monthlyPayments.filter((payment) => payment.date === todayDate);
-    const uniquePayments = newProcessedPayments.filter(
-      (payment) => !processedPayments.some((p) => p.name === payment.name && p.price === payment.price)
-    );
-
-    if (uniquePayments.length > 0) {
-      setProcessedPayments((prev) => [
-        ...prev,
-        ...uniquePayments.map((payment) => ({
-          name: payment.name,
-          price: payment.price,
-          id: Date.now().toString(),
-        })),
-      ]);
-    }
-  }, [monthlyPayments]);
-
   return {
     paymentName,
     setPaymentName,
@@ -83,7 +59,6 @@ export function useRecurringPaymentManager() {
     paymentDate,
     setPaymentDate,
     monthlyPayments,
-    processedPayments,
     addPayment,
   };
 }
