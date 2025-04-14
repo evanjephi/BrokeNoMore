@@ -15,7 +15,7 @@ export default function ExploreScreen() {
     setPaymentPrice,
     paymentDate,
     setPaymentDate,
-    processedPayments,
+    monthlyPayments,
     addPayment,
   } = useRecurringPaymentManager();
   const theme = useColorScheme();
@@ -49,8 +49,8 @@ export default function ExploreScreen() {
         keyboardType="numeric"
       />
       <Button title="Add Payment" onPress={addPayment} />
-      {processedPayments.length > 0 ? (
-        <ItemList groupedItems={{ default: processedPayments }} />
+      {monthlyPayments.length > 0 ? (
+        <ItemList groupedItems={{ default: monthlyPayments }} />
       ) : (
         <ThemedText>No monthly payments yet.</ThemedText>
       )}
