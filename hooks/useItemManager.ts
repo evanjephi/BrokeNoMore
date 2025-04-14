@@ -47,8 +47,9 @@ export function useItemManager() {
     const todayDate = today.getDate();
     const todayString = today.toISOString().split('T')[0];
 
+    // Filter recurring payments for today
     const newRecurringItems = monthlyPayments
-      .filter((payment: { name: string; price: number; date: number; id: string }) => payment.date === todayDate)
+      .filter((payment) => payment.date === todayDate)
       .map((payment) => ({
         name: payment.name,
         price: payment.price,
@@ -56,16 +57,17 @@ export function useItemManager() {
         id: `${payment.id}-${todayString}`, // Ensure unique ID for recurring payments
       }));
 
-    if (newRecurringItems.length > 0) {
-      // Avoid adding duplicate recurring payments for the same day
-      const updatedItems = [
-        ...items.filter((item) => !newRecurringItems.some((recurring) => recurring.id === item.id)),
-        ...newRecurringItems,
-      ];
+    // Avoid adding duplicate recurring payments for the same day
+    const uniqueRecurringItems = newRecurringItems.filter(
+      (recurring) => !items.some((item) => item.id === recurring.id)
+    );
+
+    if (uniqueRecurringItems.length > 0) {
+      const updatedItems = [...items, ...uniqueRecurringItems];
       setItems(updatedItems);
       saveItems(updatedItems);
     }
-  }, [monthlyPayments, items]);
+  }, [monthlyPayments]); // Removed `items` from dependencies to prevent infinite loop
 
   const groupedItems = items.reduce((groups, item) => {
     if (!groups[item.date]) {
