@@ -26,14 +26,14 @@ export default function ExploreScreen() {
         Automatic Monthly Payments
       </ThemedText>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
         placeholder="Payment Name"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={paymentName}
         onChangeText={setPaymentName}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
         placeholder="Payment Price"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={paymentPrice}
@@ -41,7 +41,7 @@ export default function ExploreScreen() {
         keyboardType="numeric"
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
         placeholder="Payment Date (1-31)"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={paymentDate ? paymentDate.toString() : ''}

@@ -17,14 +17,14 @@ export default function HomeScreen() {
         Your Daily Spendings
       </ThemedText>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
         placeholder="Item Name"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={itemName}
         onChangeText={setItemName}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
         placeholder="Item Price"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={itemPrice}
