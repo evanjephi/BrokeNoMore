@@ -46,4 +46,12 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  total: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+    marginTop: 10,
+  },
 });
