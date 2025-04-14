@@ -9,7 +9,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export default function HomeScreen() {
-  const { itemName, setItemName, itemPrice, setItemPrice, items, addItem } = useItemManager();
+  const { itemName, setItemName, itemPrice, setItemPrice, groupedItems, addItem } = useItemManager();
   const { processedPayments } = useRecurringPaymentManager();
   const theme = useColorScheme();
 
@@ -37,11 +37,11 @@ export default function HomeScreen() {
       <ThemedText type="subtitle" style={styles.header}>
         Items
       </ThemedText>
-      <ItemList items={items} />
+      <ItemList groupedItems={groupedItems} />
       <ThemedText type="subtitle" style={styles.header}>
         Monthly Payments
       </ThemedText>
-      <ItemList items={processedPayments} />
+      <ItemList groupedItems={{ 'Monthly Payments': processedPayments }} />
     </ThemedView>
   );
 }
