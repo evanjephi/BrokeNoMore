@@ -48,7 +48,7 @@ export function useItemManager() {
     const todayString = today.toISOString().split('T')[0];
 
     const newRecurringItems = monthlyPayments
-      .filter((payment) => payment.date === todayDate)
+      .filter((payment: { name: string; price: number; date: number; id: string }) => payment.date === todayDate)
       .map((payment) => ({
         name: payment.name,
         price: payment.price,
