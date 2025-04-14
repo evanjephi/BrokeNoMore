@@ -50,7 +50,7 @@ export default function ExploreScreen() {
       />
       <Button title="Add Payment" onPress={addPayment} />
       {processedPayments.length > 0 ? (
-        <ItemList items={processedPayments} />
+        <ItemList groupedItems={{ default: processedPayments }} />
       ) : (
         <ThemedText>No monthly payments yet.</ThemedText>
       )}
