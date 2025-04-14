@@ -14,7 +14,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="title" style={styles.header}>
-        BrokeNoMore
+        Your Daily Spendings
       </ThemedText>
       <TextInput
         style={styles.input}
