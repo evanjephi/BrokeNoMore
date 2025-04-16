@@ -27,9 +27,17 @@ export function useItemManager() {
     }
   };
 
+  const getLocalDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`; // Format: YYYY-MM-DD
+  };
+
   const addItem = () => {
     if (itemName && itemPrice) {
-      const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+      const today = getLocalDate();
       const newItems = [...items, { name: itemName, price: parseFloat(itemPrice), date: today, id: Date.now().toString() }];
       setItems(newItems);
       saveItems(newItems);
@@ -43,18 +51,16 @@ export function useItemManager() {
   }, []);
 
   useEffect(() => {
-    const today = new Date();
-    const todayDate = today.getDate();
-    const todayString = today.toISOString().split('T')[0];
+    const today = getLocalDate();
 
     // Filter recurring payments for today
     const newRecurringItems = monthlyPayments
-      .filter((payment) => payment.date === todayDate)
+      .filter((payment) => payment.date === new Date().getDate())
       .map((payment) => ({
         name: payment.name,
         price: payment.price,
-        date: todayString,
-        id: `${payment.id}-${todayString}`, // Ensure unique ID for recurring payments
+        date: today,
+        id: `${payment.id}-${today}`, // Ensure unique ID for recurring payments
       }));
 
     // Avoid adding duplicate recurring payments for the same day
