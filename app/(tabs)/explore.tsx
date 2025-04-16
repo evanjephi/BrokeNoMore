@@ -1,11 +1,10 @@
 import React from 'react';
-import { TextInput, Button } from 'react-native';
-import { styles } from '../../styles';
-import { useColorScheme } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { styles, commonStyles } from '../../styles';
 import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManager';
 import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
 
 export default function ExploreScreen() {
   const {
@@ -18,42 +17,43 @@ export default function ExploreScreen() {
     monthlyPayments,
     addPayment,
   } = useRecurringPaymentManager();
-  const theme = useColorScheme();
 
   return (
-    <ThemedView style={styles.container}>
+    <LinearGradient colors={['#8B5CF6', '#5B21B6']} style={styles.container}>
       <ThemedText type="title" style={styles.header}>
         Automatic Monthly Payments
       </ThemedText>
       <TextInput
-        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
+        style={commonStyles.input}
         placeholder="Payment Name"
-        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
+        placeholderTextColor="#666"
         value={paymentName}
         onChangeText={setPaymentName}
       />
       <TextInput
-        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
+        style={commonStyles.input}
         placeholder="Payment Price"
-        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
+        placeholderTextColor="#666"
         value={paymentPrice}
         onChangeText={setPaymentPrice}
         keyboardType="numeric"
       />
       <TextInput
-        style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
+        style={commonStyles.input}
         placeholder="Payment Date (1-31)"
-        placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
+        placeholderTextColor="#666"
         value={paymentDate ? paymentDate.toString() : ''}
         onChangeText={(text) => setPaymentDate(Number(text))}
         keyboardType="numeric"
       />
-      <Button title="Add Payment" onPress={addPayment} />
+      <TouchableOpacity style={commonStyles.button} onPress={addPayment}>
+        <ThemedText style={commonStyles.buttonText}>Add Payment</ThemedText>
+      </TouchableOpacity>
       {monthlyPayments.length > 0 ? (
         <ItemList groupedItems={{ default: monthlyPayments }} />
       ) : (
         <ThemedText>No monthly payments yet.</ThemedText>
       )}
-    </ThemedView>
+    </LinearGradient>
   );
 }
