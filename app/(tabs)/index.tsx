@@ -14,7 +14,7 @@ export default function HomeScreen() {
   const theme = useColorScheme();
 
   useEffect(() => {
-    calculateSpent(groupedItems);
+    calculateSpent(groupedItems); // Calculate monthly spending
   }, [groupedItems]);
 
   const progress = budget ? Math.min((spent / budget) * 100, 100) : 0;
@@ -22,7 +22,7 @@ export default function HomeScreen() {
   return (
     <ThemedView style={styles.container}>
       <ThemedText type="title" style={styles.header}>
-        Your Daily Spendings
+        Your Monthly Spendings
       </ThemedText>
       <TextInput
         style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
@@ -42,7 +42,7 @@ export default function HomeScreen() {
       <Button title="Add Item" onPress={addItem} />
       <TextInput
         style={[styles.input, { color: theme === 'dark' ? '#fff' : '#000' }]}
-        placeholder="Set Daily Budget"
+        placeholder="Set Monthly Budget"
         placeholderTextColor={theme === 'dark' ? '#aaa' : '#666'}
         value={budget ? budget.toString() : ''}
         onChangeText={(text) => setBudget(Number(text))}
