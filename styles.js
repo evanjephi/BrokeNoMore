@@ -65,8 +65,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#34D399', // Mint green divider
+    // Removed borderBottomWidth and borderBottomColor to eliminate underlines
   },
 });
 
