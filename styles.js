@@ -54,4 +54,18 @@ export const styles = StyleSheet.create({
     borderTopColor: '#ccc',
     marginTop: 10,
   },
+  budgetContainer: {
+    marginVertical: 20,
+  },
+  progressBar: {
+    height: 10,
+    backgroundColor: '#ccc',
+    borderRadius: 5,
+    overflow: 'hidden',
+    marginTop: 5,
+  },
+  progress: {
+    height: '100%',
+    borderRadius: 5,
+  },
 });
