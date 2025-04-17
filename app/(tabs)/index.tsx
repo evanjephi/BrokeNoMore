@@ -50,12 +50,12 @@ export default function HomeScreen() {
       />
       <View style={styles.budgetContainer}>
         <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
-          Spent: ${spent.toFixed(2)}
+          Your Total Spent: ${spent.toFixed(2)}
         </ThemedText>
         {budget && (
           <>
             <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
-              Budget: ${budget.toFixed(2)}
+             Monthly Budget: ${budget.toFixed(2)}
             </ThemedText>
             <View style={styles.progressBar}>
               <View
