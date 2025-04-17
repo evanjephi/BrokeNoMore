@@ -63,8 +63,18 @@ export const styles = StyleSheet.create({
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 10,
-    // Removed borderBottomWidth and borderBottomColor to eliminate underlines
+    alignItems: 'flex-start', // Align items at the top
+    padding: 4,
+  },
+  itemName: {
+    flex: 1, // Allow the name to take up available space
+    flexWrap: 'wrap', // Wrap long text to the next line
+    marginRight: 10, // Add spacing between the name and the price
+    color: '#FFFFFF', // Ensure text color matches the theme
+  },
+  itemPrice: {
+    color: '#FFFFFF', // Ensure text color matches the theme
+    fontWeight: 'bold',
   },
   link: {
     marginTop: 15,
