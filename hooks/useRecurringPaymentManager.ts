@@ -5,8 +5,10 @@ export function useRecurringPaymentManager() {
   const [paymentName, setPaymentName] = useState('');
   const [paymentPrice, setPaymentPrice] = useState('');
   const [paymentDate, setPaymentDate] = useState<number | null>(null);
+  const [recurrence, setRecurrence] = useState<'weekly' | 'bi-weekly' | 'monthly'>('monthly'); // New state for recurrence
+  const [paused, setPaused] = useState(false); // New state for pausing payments
   const [monthlyPayments, setMonthlyPayments] = useState<
-    { name: string; price: number; date: number; id: string }[]
+    { name: string; price: number; date: number; id: string; recurrence: string; paused: boolean }[]
   >([]);
 
   const loadMonthlyPayments = async () => {
@@ -37,6 +39,8 @@ export function useRecurringPaymentManager() {
           price: parseFloat(paymentPrice),
           date: paymentDate,
           id: Date.now().toString(),
+          recurrence,
+          paused,
         },
       ];
       setMonthlyPayments(newPayments);
@@ -44,7 +48,25 @@ export function useRecurringPaymentManager() {
       setPaymentName('');
       setPaymentPrice('');
       setPaymentDate(null);
+      setRecurrence('monthly'); // Reset recurrence to default
+      setPaused(false); // Reset paused state
     }
+  };
+
+  const editPayment = (id: string, updatedPayment: Partial<typeof monthlyPayments[0]>) => {
+    const updatedPayments = monthlyPayments.map((payment) =>
+      payment.id === id ? { ...payment, ...updatedPayment } : payment
+    );
+    setMonthlyPayments(updatedPayments);
+    saveMonthlyPayments(updatedPayments);
+  };
+
+  const togglePausePayment = (id: string) => {
+    const updatedPayments = monthlyPayments.map((payment) =>
+      payment.id === id ? { ...payment, paused: !payment.paused } : payment
+    );
+    setMonthlyPayments(updatedPayments);
+    saveMonthlyPayments(updatedPayments);
   };
 
   useEffect(() => {
@@ -58,7 +80,13 @@ export function useRecurringPaymentManager() {
     setPaymentPrice,
     paymentDate,
     setPaymentDate,
+    recurrence,
+    setRecurrence,
+    paused,
+    setPaused,
     monthlyPayments,
     addPayment,
+    editPayment,
+    togglePausePayment,
   };
 }
