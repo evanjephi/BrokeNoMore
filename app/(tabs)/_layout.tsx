@@ -13,7 +13,7 @@ import { Colors } from '@/constants/Colors'; // Centralized color constants
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-const ICON_SIZE = 30; // Set a consistent icon size
+const ICON_SIZE = 28; // Set a consistent icon size
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -46,16 +46,20 @@ export default function RootLayout() {
         <Tabs.Screen
           name="explore"
           options={{
-            title: 'Recurring Payment',
-            tabBarIcon: ({ focused }) => (
-              <Image
-                source={require('../../assets/images/recurring-payment-icon.png')} // Ensure this path is correct
-                style={{
-                  width: ICON_SIZE,
-                  height: ICON_SIZE,
-                  tintColor: focused ? Colors.light.primary : Colors.light.secondary,
-                }}
-                accessibilityLabel="Recurring Payment Tab"
+            title: 'Monthly Payment',
+            tabBarIcon: ({ color, focused }) => (
+              // <Image
+              //   source={require('../../assets/images/recurring-payment-icon.png')} // Ensure this path is correct
+              //   style={{
+              //     width: ICON_SIZE,
+              //     height: ICON_SIZE,
+              //     tintColor: focused ? Colors.light.primary : Colors.light.secondary,
+              //   }}
+              <TabBarIcon 
+                name={focused ? 'calendar' : 'calendar-outline'}
+                color={color}
+                size={ICON_SIZE}
+                accessibilityLabel="Monthly Payment Tab"
               />
             ),
           }}
