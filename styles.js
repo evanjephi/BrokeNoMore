@@ -113,7 +113,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    minWidth: 80, // Set a minimum width to ensure consistent size
+    width: 100, // Set a fixed width for consistency
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,

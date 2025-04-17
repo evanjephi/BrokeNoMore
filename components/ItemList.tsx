@@ -4,7 +4,7 @@ import { styles } from '../styles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-export function ItemList({ groupedItems }: { groupedItems: Record<string, { name: string; price: number; id: string }[]> }) {
+export function ItemList({ groupedItems }: { groupedItems: Record<string, { name: string; price: number; id: string; tag?: string }[]> }) {
   const sections = Object.entries(groupedItems);
 
   return (
@@ -20,7 +20,14 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
             </ThemedText>
             {items.map((item) => (
               <View key={item.id} style={styles.item}>
-                <ThemedText style={styles.itemName}>{item.name}</ThemedText>
+                <ThemedText style={styles.itemName}>{item.name}
+                {item.tag && (
+                  <ThemedText style={[styles.itemName, { fontStyle: 'italic', color: '#34D399' }]}>
+                     ({item.tag})
+                  </ThemedText>
+                )}
+                </ThemedText>
+                
                 <ThemedText style={styles.itemPrice}>${item.price.toFixed(2)}</ThemedText>
               </View>
             ))}

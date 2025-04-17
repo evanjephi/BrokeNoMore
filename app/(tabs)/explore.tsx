@@ -88,12 +88,12 @@ export default function ExploreScreen() {
       </TouchableOpacity>
       {monthlyPayments.length > 0 ? (
         monthlyPayments.map((payment) => (
-          <View key={payment.id} style={styles.item}>
-            <View style={{ flex: 1 }}>
+          <View key={payment.id} style={[styles.item, { paddingVertical: 10 }]}>
+            <View style={{ flex: 3, marginRight: 10 }}>
               <ThemedText style={styles.itemName}>{payment.name}</ThemedText>
               <ThemedText style={styles.itemPrice}>${payment.price.toFixed(2)}</ThemedText>
             </View>
-            <View style={styles.buttonGroup}>
+            <View style={[styles.buttonGroup, { flex: 1, alignSelf: 'flex-end' }]}>
               <TouchableOpacity onPress={() => togglePausePayment(payment.id)} style={styles.smallButton}>
                 <ThemedText style={commonStyles.buttonText}>
                   {payment.paused ? 'Resume' : 'Pause'}
@@ -117,29 +117,31 @@ export default function ExploreScreen() {
               Edit Payment
             </ThemedText>
             <TextInput
-              style={commonStyles.input}
+              style={[commonStyles.input, { width: '100%' }]} // Ensure consistent width
               placeholder="Payment Name"
               placeholderTextColor="#666"
               value={editName}
               onChangeText={setEditName}
             />
             <TextInput
-              style={commonStyles.input}
+              style={[commonStyles.input, { width: '100%' }]} // Ensure consistent width
               placeholder="Payment Price"
               placeholderTextColor="#666"
               value={editPrice}
               onChangeText={setEditPrice}
               keyboardType="numeric"
             />
-            <TouchableOpacity style={commonStyles.button} onPress={saveEdit}>
-              <ThemedText style={commonStyles.buttonText}>Save</ThemedText>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={[commonStyles.button, { backgroundColor: 'red' }]}
-              onPress={() => setEditModalVisible(false)}
-            >
-              <ThemedText style={commonStyles.buttonText}>Cancel</ThemedText>
-            </TouchableOpacity>
+            <View style={styles.buttonGroup}>
+              <TouchableOpacity style={[styles.smallButton, { flex: 1 }]} onPress={saveEdit}>
+                <ThemedText style={commonStyles.buttonText}>Save</ThemedText>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[styles.smallButton, { flex: 1, backgroundColor: 'red' }]}
+                onPress={() => setEditModalVisible(false)}
+              >
+                <ThemedText style={commonStyles.buttonText}>Cancel</ThemedText>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>

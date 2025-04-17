@@ -8,7 +8,7 @@ import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
 
 export default function HomeScreen() {
-  const { itemName, setItemName, itemPrice, setItemPrice, groupedItems, addItem } = useItemManager();
+  const { itemName, setItemName, itemPrice, setItemPrice, itemTag, setItemTag, filterTag, setFilterTag, groupedItems, addItem } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
 
   useEffect(() => {
@@ -37,6 +37,13 @@ export default function HomeScreen() {
         onChangeText={setItemPrice}
         keyboardType="numeric"
       />
+      <TextInput
+        style={commonStyles.input}
+        placeholder="Item Tag (e.g., Work, Vacation)"
+        placeholderTextColor="#666"
+        value={itemTag}
+        onChangeText={setItemTag}
+      />
       <TouchableOpacity style={commonStyles.button} onPress={addItem}>
         <ThemedText style={commonStyles.buttonText}>Add Item</ThemedText>
       </TouchableOpacity>
@@ -47,6 +54,13 @@ export default function HomeScreen() {
         value={budget ? budget.toString() : ''}
         onChangeText={(text) => setBudget(Number(text))}
         keyboardType="numeric"
+      />
+      <TextInput
+        style={commonStyles.input}
+        placeholder="Filter by Tag"
+        placeholderTextColor="#666"
+        value={filterTag}
+        onChangeText={setFilterTag}
       />
       <View style={styles.budgetContainer}>
         <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>

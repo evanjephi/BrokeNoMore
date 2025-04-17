@@ -5,7 +5,9 @@ import { useRecurringPaymentManager } from './useRecurringPaymentManager';
 export function useItemManager() {
   const [itemName, setItemName] = useState('');
   const [itemPrice, setItemPrice] = useState('');
-  const [items, setItems] = useState<{ name: string; price: number; date: string; id: string }[]>([]);
+  const [itemTag, setItemTag] = useState(''); // New state for item tags
+  const [filterTag, setFilterTag] = useState(''); // New state for filtering by tag
+  const [items, setItems] = useState<{ name: string; price: number; date: string; id: string; tag?: string }[]>([]);
   const { monthlyPayments } = useRecurringPaymentManager();
 
   const loadItems = async () => {
@@ -38,11 +40,21 @@ export function useItemManager() {
   const addItem = () => {
     if (itemName && itemPrice) {
       const today = getLocalDate();
-      const newItems = [...items, { name: itemName, price: parseFloat(itemPrice), date: today, id: Date.now().toString() }];
+      const newItems = [
+        ...items,
+        {
+          name: itemName,
+          price: parseFloat(itemPrice),
+          date: today,
+          id: Date.now().toString(),
+          tag: itemTag, // Include tag in the item
+        },
+      ];
       setItems(newItems);
       saveItems(newItems);
       setItemName('');
       setItemPrice('');
+      setItemTag(''); // Reset tag input
     }
   };
 
@@ -75,19 +87,28 @@ export function useItemManager() {
     }
   }, [monthlyPayments]); // Removed `items` from dependencies to prevent infinite loop
 
-  const groupedItems = items.reduce((groups, item) => {
+  // Filter items by tag if a filter is set
+  const filteredItems = filterTag
+    ? items.filter((item) => item.tag === filterTag)
+    : items;
+
+  const groupedItems = filteredItems.reduce((groups, item) => {
     if (!groups[item.date]) {
       groups[item.date] = [];
     }
     groups[item.date].push(item);
     return groups;
-  }, {} as Record<string, { name: string; price: number; date: string; id: string }[]>);
+  }, {} as Record<string, { name: string; price: number; date: string; id: string; tag?: string }[]>);
 
   return {
     itemName,
     setItemName,
     itemPrice,
     setItemPrice,
+    itemTag,
+    setItemTag,
+    filterTag,
+    setFilterTag,
     groupedItems,
     addItem,
   };
