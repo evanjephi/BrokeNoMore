@@ -20,8 +20,8 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
             </ThemedText>
             {items.map((item) => (
               <View key={item.id} style={styles.item}>
-                <ThemedText>{item.name}</ThemedText>
-                <ThemedText>${item.price.toFixed(2)}</ThemedText>
+                <ThemedText style={styles.itemName}>{item.name}</ThemedText>
+                <ThemedText style={styles.itemPrice}>${item.price.toFixed(2)}</ThemedText>
               </View>
             ))}
             <View style={styles.total}>
