@@ -84,6 +84,42 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: '#FFFFFF', // White background for the modal
+    borderRadius: 12,
+    padding: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonGroup: {
+    flexDirection: 'row',
+    gap: 10, // Add spacing between buttons
+  },
+  smallButton: {
+    backgroundColor: '#34D399', // Mint green button
+    paddingVertical: 10, // Ensure consistent vertical padding
+    paddingHorizontal: 15, // Ensure consistent horizontal padding
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: 80, // Set a minimum width to ensure consistent size
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
 });
 
 export const commonStyles = StyleSheet.create({
