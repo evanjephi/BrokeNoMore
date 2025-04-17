@@ -11,8 +11,7 @@ export const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: '#FFFFFF', // White text for headers
-    marginBottom: 20,
-    textAlign: 'center',
+    marginBottom: 10,
   },
   section: {
     marginBottom: 20,
@@ -40,7 +39,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   budgetContainer: {
-    marginVertical: 20,
+    marginVertical: 5,
     backgroundColor: '#5B21B6', // Dark purple background for budget
     borderRadius: 12,
     padding: 15,
@@ -67,6 +66,14 @@ export const styles = StyleSheet.create({
     padding: 10,
     // Removed borderBottomWidth and borderBottomColor to eliminate underlines
   },
+  link: {
+    marginTop: 15,
+    paddingVertical: 10,
+    color: '#34D399', // Mint green for links
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 });
 
 export const commonStyles = StyleSheet.create({
@@ -74,7 +81,7 @@ export const commonStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#34D399', // Mint green border
     padding: 12,
-    marginBottom: 15,
+    marginBottom: 10,
     borderRadius: 8,
     backgroundColor: '#FFFFFF', // White background for inputs
     color: '#000000', // Black text for inputs
@@ -85,7 +92,7 @@ export const commonStyles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     alignItems: 'center',
-    marginBottom: 15,
+    marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
