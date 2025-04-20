@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export function useRecurringPaymentManager() {
   const [paymentName, setPaymentName] = useState('');
-  const [paymentPrice, setPaymentPrice] = useState('');
+  const [paymentPrice, setPaymentPrice] = useState(''); // Ensure it's a string to avoid null issues
   const [paymentDate, setPaymentDate] = useState<number | null>(null);
   const [recurrence, setRecurrence] = useState<'weekly' | 'bi-weekly' | 'monthly'>('monthly'); // New state for recurrence
   const [paused, setPaused] = useState(false); // New state for pausing payments
@@ -36,7 +36,7 @@ export function useRecurringPaymentManager() {
         ...monthlyPayments,
         {
           name: paymentName,
-          price: parseFloat(paymentPrice),
+          price: parseFloat(paymentPrice) || 0, // Ensure price is a valid number
           date: paymentDate,
           id: Date.now().toString(),
           recurrence,
@@ -46,7 +46,7 @@ export function useRecurringPaymentManager() {
       setMonthlyPayments(newPayments);
       saveMonthlyPayments(newPayments);
       setPaymentName('');
-      setPaymentPrice('');
+      setPaymentPrice(''); // Reset price to an empty string
       setPaymentDate(null);
       setRecurrence('monthly'); // Reset recurrence to default
       setPaused(false); // Reset paused state
@@ -65,6 +65,12 @@ export function useRecurringPaymentManager() {
     const updatedPayments = monthlyPayments.map((payment) =>
       payment.id === id ? { ...payment, paused: !payment.paused } : payment
     );
+    setMonthlyPayments(updatedPayments);
+    saveMonthlyPayments(updatedPayments);
+  };
+
+  const removePayment = (id: string) => {
+    const updatedPayments = monthlyPayments.filter((payment) => payment.id !== id); // Remove the payment by ID
     setMonthlyPayments(updatedPayments);
     saveMonthlyPayments(updatedPayments);
   };
@@ -88,5 +94,6 @@ export function useRecurringPaymentManager() {
     addPayment,
     editPayment,
     togglePausePayment,
+    removePayment, // Expose removePayment
   };
 }
