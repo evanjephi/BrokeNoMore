@@ -20,20 +20,20 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
             </ThemedText>
             {items.map((item) => (
               <View key={item.id} style={styles.item}>
-                <ThemedText style={styles.itemName}>{item.name}
-                {item.tag && (
-                  <ThemedText style={[styles.itemName, { fontStyle: 'italic', color: '#34D399' }]}>
-                     ({item.tag})
-                  </ThemedText>
-                )}
+                <ThemedText style={styles.itemName}>
+                  {item.name}
+                  {item.tag && (
+                    <ThemedText style={[styles.itemName, { fontStyle: 'italic', color: '#A7F3D0' }]}>
+                      ({item.tag})
+                    </ThemedText>
+                  )}
                 </ThemedText>
-                
                 <ThemedText style={styles.itemPrice}>${item.price.toFixed(2)}</ThemedText>
               </View>
             ))}
             <View style={styles.total}>
-              <ThemedText type="defaultSemiBold">Total:</ThemedText>
-              <ThemedText type="defaultSemiBold">${total.toFixed(2)}</ThemedText>
+              <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>Total:</ThemedText>
+              <ThemedText type="defaultSemiBold" style={{ color: '#FACC15' }}>${total.toFixed(2)}</ThemedText>
             </View>
           </ThemedView>
         );
