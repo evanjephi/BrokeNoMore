@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#FACC15', // Muted Gold for headings
     marginBottom: 20,
-    textAlign: 'center',
   },
   section: {
     marginBottom: 20,
@@ -81,7 +80,32 @@ export const styles = StyleSheet.create({
     gap: 10, // Add spacing between buttons
   },
   smallButton: {
-    backgroundColor: '#34D399', // Mint green button
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  pauseButton: {
+    backgroundColor: '#FED7AA', // Red for pause
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  editButton: {
+    backgroundColor: '#FACC15', // Golden yellow for edit
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -121,7 +145,6 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-    alignItems: 'center',
   },
   progressBar: {
     height: 14, // Slightly taller for better visibility

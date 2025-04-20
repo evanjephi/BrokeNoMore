@@ -122,12 +122,12 @@ export default function ExploreScreen() {
                   </ThemedText>
                 </View>
                 <View style={[styles.buttonGroup, { flex: 1 }]}>
-                  <TouchableOpacity onPress={() => togglePausePayment(payment.id)} style={styles.smallButton}>
+                  <TouchableOpacity onPress={() => togglePausePayment(payment.id)} style={styles.pauseButton}>
                     <ThemedText style={commonStyles.buttonText}>
                       {payment.paused ? 'Resume' : 'Pause'}
                     </ThemedText>
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => openEditModal(payment)} style={styles.smallButton}>
+                  <TouchableOpacity onPress={() => openEditModal(payment)} style={styles.editButton}>
                     <ThemedText style={commonStyles.buttonText}>Edit</ThemedText>
                   </TouchableOpacity>
                 </View>
@@ -166,7 +166,7 @@ export default function ExploreScreen() {
                 <ThemedText style={commonStyles.buttonText}>Save</ThemedText>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.smallButton, { flex: 1, backgroundColor: 'red' }]}
+                style={[styles.smallButton, { flex: 1, backgroundColor: '#FDBA74' }]}
                 onPress={() => setEditModalVisible(false)}
               >
                 <ThemedText style={commonStyles.buttonText}>Cancel</ThemedText>
