@@ -4,6 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 50,
     backgroundColor: 'linear-gradient(180deg, #8B5CF6 0%, #5B21B6 100%)', // Purplish gradient background
   },
   header: {
