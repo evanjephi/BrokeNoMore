@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/BNM-logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ejephi.BrokeNoMore"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7b1e2f12-0c14-480a-b5bf-dcf18c277cb7"
+      }
     }
   }
 }
