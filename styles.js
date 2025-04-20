@@ -4,85 +4,94 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 40,
-    backgroundColor: '#8B5CF6', // Light purple background
+    backgroundColor: 'linear-gradient(180deg, #8B5CF6 0%, #5B21B6 100%)', // Purplish gradient background
   },
   header: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: '#FFFFFF', // White text for headers
-    marginBottom: 10,
+    color: '#FACC15', // Muted Gold for headings
+    marginBottom: 20,
+    textAlign: 'center',
   },
   section: {
     marginBottom: 20,
-    backgroundColor: '#5B21B6', // Dark purple section background
+    backgroundColor: '#5B21B6', // White background for sections
     borderRadius: 12,
     padding: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
   sectionHeader: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#FFFFFF', // White text for section headers
+    color: '#A7F3D0', // Light Mint for section headers
     marginBottom: 10,
   },
-  total: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderTopColor: '#34D399', // Mint green divider
-    marginTop: 10,
+  input: {
+    borderWidth: 1,
+    borderColor: '#D1D5DB', // Light gray border
+    padding: 12,
+    marginBottom: 10,
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF', // White background for inputs
+    color: '#1F2937', // Dark gray text for inputs
+    fontSize: 16,
   },
-  budgetContainer: {
-    marginVertical: 5,
-    backgroundColor: '#5B21B6', // Dark purple background for budget
-    borderRadius: 12,
-    padding: 15,
+  button: {
+    backgroundColor: '#A7F3D0', // Light Mint for buttons
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
-  progressBar: {
-    height: 12,
-    backgroundColor: '#FFFFFF', // White background for progress bar
-    borderRadius: 6,
-    overflow: 'hidden',
-    marginTop: 10,
-  },
-  progress: {
-    height: '100%',
-    borderRadius: 6,
+  buttonText: {
+    color: '#1F2937', // Dark Gray for button text
+    fontWeight: 'bold',
+    fontSize: 16,
   },
   item: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-start', // Align items at the top
-    padding: 4,
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB', // Light gray divider
   },
   itemName: {
-    flex: 1, // Allow the name to take up available space
-    flexWrap: 'wrap', // Wrap long text to the next line
-    marginRight: 10, // Add spacing between the name and the price
-    color: '#FFFFFF', // Ensure text color matches the theme
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#FFFFFF', // White for item names
   },
   itemPrice: {
-    color: '#FFFFFF', // Ensure text color matches the theme
-    fontWeight: 'bold',
+    fontSize: 14,
+    fontWeight: '400',
+    color: '#FACC15', // Muted Gold for item prices
   },
-  link: {
-    marginTop: 15,
-    paddingVertical: 10,
-    color: '#34D399', // Mint green for links
-    textAlign: 'center',
-    fontWeight: 'bold',
-    fontSize: 16,
+  buttonGroup: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 10, // Add spacing between buttons
+  },
+  smallButton: {
+    backgroundColor: '#34D399', // Mint green button
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   modalContainer: {
     flex: 1,
@@ -91,62 +100,76 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Semi-transparent background
   },
   modalContent: {
-    width: '80%',
+    width: '90%',
     backgroundColor: '#FFFFFF', // White background for the modal
     borderRadius: 12,
     padding: 20,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
-  buttonGroup: {
-    flexDirection: 'row',
-    gap: 10, // Add spacing between buttons
-  },
-  smallButton: {
-    backgroundColor: '#34D399', // Mint green button
-    paddingVertical: 10, // Ensure consistent vertical padding
-    paddingHorizontal: 15, // Ensure consistent horizontal padding
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 100, // Set a fixed width for consistency
+  budgetContainer: {
+    marginVertical: 10,
+    backgroundColor: '#5B21B6', // Dark purple background for the budget container
+    borderRadius: 12,
+    padding: 15,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
+    alignItems: 'center',
+  },
+  progressBar: {
+    height: 14, // Slightly taller for better visibility
+    backgroundColor: '#CBD5E1', // Cool Blue-Gray for the background of the progress bar
+    borderRadius: 7, // Rounded corners
+    overflow: 'hidden',
+    marginTop: 10,
+    width: '100%', // Ensure the progress bar spans the full width of the container
+  },
+  progress: {
+    height: '100%',
+    borderRadius: 7,
+  },
+  total: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#E5E7EB', // Soft Gray divider
+    marginTop: 10,
   },
 });
 
 export const commonStyles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#34D399', // Mint green border
+    borderColor: '#D1D5DB', // Light gray border
     padding: 12,
     marginBottom: 10,
     borderRadius: 8,
     backgroundColor: '#FFFFFF', // White background for inputs
-    color: '#000000', // Black text for inputs
+    color: '#1F2937', // Dark gray text for inputs
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#34D399', // Mint green button
-    padding: 12,
+    backgroundColor: '#A7F3D0', // Light Mint for buttons
+    paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 4,
-    elevation: 5,
+    elevation: 3,
   },
   buttonText: {
-    color: '#FFFFFF', // White text for buttons
+    color: '#1F2937', // Dark Gray for button text
     fontWeight: 'bold',
     fontSize: 16,
   },
