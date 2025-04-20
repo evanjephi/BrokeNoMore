@@ -64,21 +64,27 @@ export default function HomeScreen() {
       />
       <View style={styles.budgetContainer}>
         <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
-          Your Total Spent: ${spent.toFixed(2)}
+          Your Total Spent: <ThemedText style={{ color: '#FACC15' }}>${spent.toFixed(2)}</ThemedText>
         </ThemedText>
         {budget && (
           <>
             <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
-             Monthly Budget: ${budget.toFixed(2)}
+              Monthly Budget: <ThemedText style={{ color: '#FACC15' }}>${budget.toFixed(2)}</ThemedText>
             </ThemedText>
             <View style={styles.progressBar}>
               <View
                 style={[
                   styles.progress,
-                  { width: `${progress}%`, backgroundColor: progress > 80 ? 'red' : '#34D399' },
+                  {
+                    width: `${progress}%`, // Dynamically set the width based on progress
+                    backgroundColor: progress > 80 ? '#EF4444' : '#A7F3D0', // Red for high progress, Light Mint otherwise
+                  },
                 ]}
               />
             </View>
+            <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF', marginTop: 5 }}>
+              Progress: {progress.toFixed(2)}% {/* Display progress percentage */}
+            </ThemedText>
           </>
         )}
       </View>
