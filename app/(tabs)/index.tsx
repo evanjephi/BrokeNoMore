@@ -8,7 +8,7 @@ import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
 
 export default function HomeScreen() {
-  const { itemName, setItemName, itemPrice, setItemPrice, itemTag, setItemTag, filterTag, setFilterTag, groupedItems, addItem } = useItemManager();
+  const { filterTag, setFilterTag,  groupedItems} = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
 
   useEffect(() => {
@@ -22,31 +22,7 @@ export default function HomeScreen() {
       <ThemedText type="title" style={styles.header}>
         Your Monthly Spendings
       </ThemedText>
-      <TextInput
-        style={commonStyles.input}
-        placeholder="Item Name"
-        placeholderTextColor="#666"
-        value={itemName}
-        onChangeText={setItemName}
-      />
-      <TextInput
-        style={commonStyles.input}
-        placeholder="Item Price"
-        placeholderTextColor="#666"
-        value={itemPrice}
-        onChangeText={setItemPrice}
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={commonStyles.input}
-        placeholder="Item Tag (e.g., Work, Vacation)"
-        placeholderTextColor="#666"
-        value={itemTag}
-        onChangeText={setItemTag}
-      />
-      <TouchableOpacity style={commonStyles.button} onPress={addItem}>
-        <ThemedText style={commonStyles.buttonText}>Add Item</ThemedText>
-      </TouchableOpacity>
+
       <TextInput
         style={commonStyles.input}
         placeholder="Set Monthly Budget"
@@ -55,6 +31,7 @@ export default function HomeScreen() {
         onChangeText={(text) => setBudget(Number(text))}
         keyboardType="numeric"
       />
+
       <TextInput
         style={commonStyles.input}
         placeholder="Filter by Tag"
@@ -62,6 +39,7 @@ export default function HomeScreen() {
         value={filterTag}
         onChangeText={setFilterTag}
       />
+      
       <View style={styles.budgetContainer}>
         <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
           Your Total Spent: <ThemedText style={{ color: '#FACC15' }}>${spent.toFixed(2)}</ThemedText>
@@ -89,7 +67,7 @@ export default function HomeScreen() {
         )}
       </View>
       <ThemedText type="subtitle" style={styles.header}>
-        Items
+        Expense Summary
       </ThemedText>
       <ItemList groupedItems={groupedItems} />
     </LinearGradient>
