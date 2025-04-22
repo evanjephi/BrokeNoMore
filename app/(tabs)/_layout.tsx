@@ -43,6 +43,21 @@ export default function RootLayout() {
             ),
           }}
         />
+          <Tabs.Screen
+          name="itemAdd"
+          options={{
+            title: 'Add Spending',
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? 'cash' : 'cash-outline'}
+                color={color}
+                size={ICON_SIZE}
+                accessibilityLabel="Home Tab"
+              />
+            ),
+          }}
+        />
+
         <Tabs.Screen
           name="explore"
           options={{
