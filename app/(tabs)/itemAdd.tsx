@@ -10,8 +10,12 @@ export default function HomeScreen() {
     
     return (
         <LinearGradient colors={['#8B5CF6', '#5B21B6']} style={styles.container}>
-             <View style={[styles.section, { marginBottom: 20 }]}>
             <ThemedText type="title" style={styles.header}>
+                Daily Spending Tracker
+           </ThemedText>
+
+             <View style={[styles.section, { marginBottom: 20 }]}>
+            <ThemedText type="subtitle" style={styles.sectionHeader}>
                 Add New Spending
             </ThemedText>
             
