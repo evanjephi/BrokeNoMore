@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Picker } from '@react-native-picker/picker';
 import { commonStyles, styles } from '../../styles';
 import { useItemManager } from '../../hooks/useItemManager';
 import { useBudgetManager } from '../../hooks/useBudgetManager';
@@ -8,8 +9,10 @@ import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
 
 export default function HomeScreen() {
-  const { filterTag, setFilterTag,  groupedItems} = useItemManager();
+  const { filterTag, setFilterTag, groupedItems } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
+
+  const categories = ['All', 'Food', 'Travel', 'Bills', 'Work', 'Other']; // Predefined categories with "All" option
 
   useEffect(() => {
     calculateSpent(groupedItems); // Calculate monthly spending
@@ -32,14 +35,16 @@ export default function HomeScreen() {
         keyboardType="numeric"
       />
 
-      <TextInput
+      <Picker
+        selectedValue={filterTag}
         style={commonStyles.input}
-        placeholder="Filter by Tag"
-        placeholderTextColor="#666"
-        value={filterTag}
-        onChangeText={setFilterTag}
-      />
-      
+        onValueChange={(value) => setFilterTag(value)}
+      >
+        {categories.map((category) => (
+          <Picker.Item key={category} label={category} value={category === 'All' ? '' : category} />
+        ))}
+      </Picker>
+
       <View style={styles.budgetContainer}>
         <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
           Your Total Spent: <ThemedText style={{ color: '#FACC15' }}>${spent.toFixed(2)}</ThemedText>

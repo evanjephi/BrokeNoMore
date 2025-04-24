@@ -40,26 +40,27 @@ export function useItemManager() {
   const addItem = () => {
     if (itemName && itemPrice) {
       const today = getLocalDate();
-      const newItems = [
-        ...items,
-        {
-          name: itemName,
-          price: parseFloat(itemPrice),
-          date: today,
-          id: Date.now().toString(),
-          tag: itemTag, // Include tag in the item
-        },
-      ];
-      setItems(newItems);
-      saveItems(newItems);
+      const newItem = {
+        name: itemName,
+        price: parseFloat(itemPrice),
+        date: today,
+        id: Date.now().toString(),
+        tag: itemTag, // Include tag in the item
+      };
+
+      const updatedItems = [...items, newItem];
+      setItems(updatedItems); // Update the state with the new item
+      saveItems(updatedItems); // Persist the updated items to AsyncStorage
+
+      // Reset input fields
       setItemName('');
       setItemPrice('');
-      setItemTag(''); // Reset tag input
+      setItemTag('');
     }
   };
 
   useEffect(() => {
-    loadItems();
+    loadItems(); // Load items from AsyncStorage on component mount
   }, []);
 
   useEffect(() => {

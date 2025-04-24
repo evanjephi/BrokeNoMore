@@ -18,7 +18,6 @@ const ICON_SIZE = 28; // Set a consistent icon size
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Tabs
@@ -43,7 +42,7 @@ export default function RootLayout() {
             ),
           }}
         />
-          <Tabs.Screen
+        <Tabs.Screen
           name="itemAdd"
           options={{
             title: 'Add Spending',
@@ -57,24 +56,30 @@ export default function RootLayout() {
             ),
           }}
         />
-
         <Tabs.Screen
           name="explore"
           options={{
             title: 'Monthly Payment',
             tabBarIcon: ({ color, focused }) => (
-              // <Image
-              //   source={require('../../assets/images/recurring-payment-icon.png')} // Ensure this path is correct
-              //   style={{
-              //     width: ICON_SIZE,
-              //     height: ICON_SIZE,
-              //     tintColor: focused ? Colors.light.primary : Colors.light.secondary,
-              //   }}
               <TabBarIcon 
                 name={focused ? 'calendar' : 'calendar-outline'}
                 color={color}
                 size={ICON_SIZE}
                 accessibilityLabel="Monthly Payment Tab"
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="analytics"
+          options={{
+            title: 'Analytics',
+            tabBarIcon: ({ color, focused }) => (
+              <TabBarIcon
+                name={focused ? 'analytics' : 'analytics-outline'}
+                color={color}
+                size={ICON_SIZE}
+                accessibilityLabel="Analytics Tab"
               />
             ),
           }}
