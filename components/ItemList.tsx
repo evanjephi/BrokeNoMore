@@ -5,7 +5,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
 export function ItemList({ groupedItems }: { groupedItems: Record<string, { name: string; price: number; id: string; tag?: string }[]> }) {
-  const sections = Object.entries(groupedItems);
+  const sections = Object.entries(groupedItems); // Already sorted in descending order in useItemManager
 
   return (
     <FlatList

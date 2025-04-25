@@ -48,7 +48,7 @@ export function useItemManager() {
         tag: itemTag, // Include tag in the item
       };
 
-      const updatedItems = [...items, newItem];
+      const updatedItems = [newItem, ...items]; // Add the new item at the top
       setItems(updatedItems); // Update the state with the new item
       saveItems(updatedItems); // Persist the updated items to AsyncStorage
 
@@ -93,6 +93,7 @@ export function useItemManager() {
     ? items.filter((item) => item.tag === filterTag)
     : items;
 
+  // Group and sort items by date in descending order
   const groupedItems = filteredItems.reduce((groups, item) => {
     if (!groups[item.date]) {
       groups[item.date] = [];
@@ -100,6 +101,13 @@ export function useItemManager() {
     groups[item.date].push(item);
     return groups;
   }, {} as Record<string, { name: string; price: number; date: string; id: string; tag?: string }[]>);
+
+  const sortedGroupedItems = Object.keys(groupedItems)
+    .sort((a, b) => new Date(b).getTime() - new Date(a).getTime())
+    .reduce((sortedGroups, date) => {
+      sortedGroups[date] = groupedItems[date];
+      return sortedGroups;
+    }, {} as Record<string, { name: string; price: number; date: string; id: string; tag?: string }[]>);
 
   return {
     itemName,
@@ -110,7 +118,7 @@ export function useItemManager() {
     setItemTag,
     filterTag,
     setFilterTag,
-    groupedItems,
+    groupedItems: sortedGroupedItems, // Return sorted groupedItems
     addItem,
   };
 }
