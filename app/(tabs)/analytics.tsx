@@ -31,6 +31,7 @@ export default function AnalyticsScreen() {
       const tag = item.tag || 'Uncategorized';
       categoryTotals[tag] = (categoryTotals[tag] || 0) + (item.price || 0); // Ensure item.price is valid
     });
+
     const formattedCategoryData = Object.entries(categoryTotals).map(([key, value]) => ({
       name: key,
       amount: value || 0, // Ensure value is valid
@@ -38,7 +39,11 @@ export default function AnalyticsScreen() {
       legendFontColor: '#FFFFFF',
       legendFontSize: 14,
     }));
-    setCategoryData(formattedCategoryData);
+
+    // Only update state if the data has changed
+    if (JSON.stringify(categoryData) !== JSON.stringify(formattedCategoryData)) {
+      setCategoryData(formattedCategoryData);
+    }
 
     // Prepare data for monthly spending trends
     const monthlyTotals: Record<string, number> = {};
@@ -46,11 +51,16 @@ export default function AnalyticsScreen() {
       const month = date.slice(0, 7); // Extract YYYY-MM
       monthlyTotals[month] = (monthlyTotals[month] || 0) + items.reduce((sum, item) => sum + (item.price || 0), 0); // Ensure item.price is valid
     });
+
     const formattedMonthlySpending = Object.entries(monthlyTotals).map(([month, total]) => ({
       month,
       total: total || 0, // Ensure total is valid
     }));
-    setMonthlySpending(formattedMonthlySpending);
+
+    // Only update state if the data has changed
+    if (JSON.stringify(monthlySpending) !== JSON.stringify(formattedMonthlySpending)) {
+      setMonthlySpending(formattedMonthlySpending);
+    }
   }, [groupedItems]); // Ensure groupedItems is the only dependency
 
   const getRandomColor = () => {
