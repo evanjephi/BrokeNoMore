@@ -12,7 +12,7 @@ export default function HomeScreen() {
   const { filterTag, setFilterTag, groupedItems } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
 
-  const categories = ['All', 'Food', 'Travel', 'Bills', 'Work', 'Other']; // Predefined categories with "All" option
+  const categories = ['All', 'Food', 'Travel', 'Bills', 'Work', 'Grocery', 'Other' ]; // Added "Grocery" to categories
 
   useEffect(() => {
     calculateSpent(groupedItems); // Calculate monthly spending
