@@ -12,10 +12,10 @@ export default function HomeScreen() {
     const categories = ['Food', 'Travel', 'Bills', 'Work', 'Other']; // Predefined categories
 
     const handleAddItem = () => {
-        addItem();
-        setItemName('');
-        setItemPrice('');
-        setItemTag('');
+      addItem(); // Add the item
+      setItemName(''); // Reset the item name
+      setItemPrice(''); // Reset the item price
+      setItemTag(''); // Reset the item tag
     };
 
     return (
