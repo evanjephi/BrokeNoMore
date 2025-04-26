@@ -9,7 +9,7 @@ import { ThemedText } from '@/components/ThemedText';
 export default function HomeScreen() {
     const { itemName, setItemName, itemPrice, setItemPrice, itemTag, setItemTag, addItem } = useItemManager();
     
-    const categories = ['Food', 'Travel', 'Bills', 'Work', 'Other']; // Predefined categories
+    const categories = ['Food', 'Travel', 'Bills', 'Work', 'Other', 'Grocery']; // Added "Grocery" to categories
 
     const handleAddItem = () => {
       addItem(); // Add the item
