@@ -120,6 +120,9 @@ export default function ExploreScreen() {
                   <ThemedText style={styles.itemPrice}>
                     ${payment.price ? payment.price.toFixed(2) : '0.00'} {/* Ensure price is valid */}
                   </ThemedText>
+                  <ThemedText style={{ color: '#A7F3D0', fontSize: 14 }}>
+                    Recurs on: {payment.date}th of each month {/* Display the recurring date */}
+                  </ThemedText>
                 </View>
                 <View style={[styles.buttonGroup, { flex: 1 }]}>
                   <TouchableOpacity onPress={() => togglePausePayment(payment.id)} style={styles.pauseButton}>
