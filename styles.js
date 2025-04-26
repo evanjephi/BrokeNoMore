@@ -3,21 +3,21 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 10,
     paddingTop: 50,
     backgroundColor: 'linear-gradient(180deg, #8B5CF6 0%, #5B21B6 100%)', // Purplish gradient background
   },
   header: {
-    fontSize: 28,
+    fontSize: 23,
     fontWeight: 'bold',
     color: '#FACC15', // Muted Gold for headings
-    marginBottom: 20,
+    marginBottom: 10,
   },
   section: {
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#5B21B6', // White background for sections
     borderRadius: 12,
-    padding: 15,
+    padding: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   sectionHeader: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: '#A7F3D0', // Light Mint for section headers
     marginBottom: 10,
@@ -33,8 +33,8 @@ export const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#D1D5DB', // Light gray border
-    padding: 12,
-    marginBottom: 10,
+    padding: 10,
+    marginBottom: 5,
     borderRadius: 8,
     backgroundColor: '#FFFFFF', // White background for inputs
     color: '#1F2937', // Dark gray text for inputs
@@ -61,9 +61,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB', // Light gray divider
+    paddingVertical: 5,
   },
   itemName: {
     fontSize: 16,
