@@ -101,6 +101,7 @@ export default function ExploreScreen() {
             <Picker.Item label="Monthly" value="monthly" />
             <Picker.Item label="Weekly" value="weekly" />
             <Picker.Item label="Bi-Weekly" value="bi-weekly" />
+            <Picker.Item label="Recurring" value="recurring" /> {/* Added "Recurring" */}
           </Picker>
           <TouchableOpacity style={commonStyles.button} onPress={addPayment}>
             <ThemedText style={commonStyles.buttonText}>Add Payment</ThemedText>
