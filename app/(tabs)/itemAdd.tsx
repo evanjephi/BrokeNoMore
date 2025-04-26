@@ -54,7 +54,7 @@ export default function HomeScreen() {
           <Picker.Item key={category} label={category} value={category} />
         ))}
       </Picker>
-  
+
       <TouchableOpacity style={commonStyles.button} onPress={handleAddItem}>
         <ThemedText style={commonStyles.buttonText}>Add Item</ThemedText>
       </TouchableOpacity>
