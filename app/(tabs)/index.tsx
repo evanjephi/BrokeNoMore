@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-import { TextInput, View } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { commonStyles, styles } from '../../styles';
 import { useItemManager } from '../../hooks/useItemManager';
 import { useBudgetManager } from '../../hooks/useBudgetManager';
 import { ItemList } from '../../components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
+import {ThemedView } from '@/components/ThemedView';
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 
 export default function HomeScreen() {
   const { filterTag, setFilterTag, groupedItems } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
+  const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
 
   const categories = ['All', 'Food', 'Grocery', 'Travel', 'Bills', 'Work', 'Other' ]; // Added "Grocery" to categories
 
@@ -21,7 +24,7 @@ export default function HomeScreen() {
   const progress = budget ? Math.min((spent / budget) * 100, 100) : 0;
 
   return (
-    <LinearGradient colors={['#8B5CF6', '#5B21B6']} style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor }]}>
       <ThemedText type="title" style={styles.header}>
         Your Monthly Spendings
       </ThemedText>
@@ -45,17 +48,17 @@ export default function HomeScreen() {
         ))}
       </Picker>
 
-      <View style={styles.budgetContainer}>
-        <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
+      <ThemedView style={styles.budgetContainer}>
+        <ThemedText type="defaultSemiBold">
           Your Total Spent: <ThemedText style={{ color: '#FACC15' }}>${spent.toFixed(2)}</ThemedText>
         </ThemedText>
         {budget && (
           <>
-            <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>
+            <ThemedText type="defaultSemiBold">
               Monthly Budget: <ThemedText style={{ color: '#FACC15' }}>${budget.toFixed(2)}</ThemedText>
             </ThemedText>
-            <View style={styles.progressBar}>
-              <View
+            <ThemedView style={styles.progressBar}>
+              <ThemedView
                 style={[
                   styles.progress,
                   {
@@ -64,17 +67,17 @@ export default function HomeScreen() {
                   },
                 ]}
               />
-            </View>
+            </ThemedView>
             <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF', marginTop: 5 }}>
               Progress: {progress.toFixed(2)}% {/* Display progress percentage */}
             </ThemedText>
           </>
         )}
-      </View>
+      </ThemedView>
       <ThemedText type="subtitle" style={styles.header}>
         Expense Summary
       </ThemedText>
       <ItemList groupedItems={groupedItems} />
-    </LinearGradient>
+    </ThemedView>
   );
 }
