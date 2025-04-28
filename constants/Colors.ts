@@ -3,28 +3,28 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorLight = '#000000'; // Black for light mode
+const tintColorDark = '#FFFFFF'; // White for dark mode
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#000916',
+    text: '#000000', // Black text for light mode
+    background: '#FFFFFF', // White background for light mode
     tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-    primary: '#34D399', // Active tab color
-    secondary: '#8B5CF6', // Inactive tab color
+    icon: '#6B7280', // Gray for icons
+    tabIconDefault: '#9CA3AF', // Light gray for inactive tabs
+    tabIconSelected: tintColorLight, // Black for active tabs
+    primary: '#374151', // Dark gray for primary elements
+    secondary: '#D1D5DB', // Light gray for secondary elements
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#1F2937',
+    text: '#FFFFFF', // White text for dark mode
+    background: '#000000', // Black background for dark mode
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-    primary: '#34D399', // Active tab color
-    secondary: '#8B5CF6', // Inactive tab color
+    icon: '#9CA3AF', // Light gray for icons
+    tabIconDefault: '#6B7280', // Gray for inactive tabs
+    tabIconSelected: tintColorDark, // White for active tabs
+    primary: '#4B5563', // Medium gray for primary elements
+    secondary: '#1F2937', // Dark gray for secondary elements
   },
 };
