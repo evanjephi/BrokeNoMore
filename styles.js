@@ -1,21 +1,22 @@
 import { StyleSheet } from 'react-native';
+import { Colors } from './constants/Colors';
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
     paddingTop: 50,
-    backgroundColor: 'linear-gradient(180deg, #8B5CF6 0%, #5B21B6 100%)', // Purplish gradient background
+    backgroundColor: Colors.light.background, // Dynamic background
   },
   header: {
     fontSize: 23,
     fontWeight: 'bold',
-    color: '#FACC15', // Muted Gold for headings
+    color: Colors.light.text, // Dynamic text color
     marginBottom: 10,
   },
   section: {
     marginBottom: 10,
-    backgroundColor: '#5B21B6', // White background for sections
+    backgroundColor: Colors.light.secondary, // Dynamic section background
     borderRadius: 12,
     padding: 10,
     shadowColor: '#000',
@@ -27,21 +28,21 @@ export const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#A7F3D0', // Light Mint for section headers
+    color: Colors.light.primary, // Dynamic section header color
     marginBottom: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#D1D5DB', // Light gray border
+    borderColor: Colors.light.primary, // Dynamic border color
     padding: 10,
     marginBottom: 5,
     borderRadius: 8,
-    backgroundColor: '#FFFFFF', // White background for inputs
-    color: '#1F2937', // Dark gray text for inputs
+    backgroundColor: Colors.light.background, // Dynamic input background
+    color: Colors.light.text, // Dynamic input text color
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#A7F3D0', // Light Mint for buttons
+    backgroundColor: Colors.light.primary, // Dynamic button background
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
@@ -53,7 +54,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonText: {
-    color: '#1F2937', // Dark Gray for button text
+    color: Colors.light.background, // Dynamic button text color
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -66,12 +67,12 @@ export const styles = StyleSheet.create({
   itemName: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#FFFFFF', // White for item names
+    color: Colors.light.text, // Dynamic item name color
   },
   itemPrice: {
     fontSize: 14,
     fontWeight: '400',
-    color: '#FACC15', // Muted Gold for item prices
+    color: Colors.light.primary, // Dynamic item price color
   },
   buttonGroup: {
     flexDirection: 'row',
@@ -91,30 +92,20 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   pauseButton: {
-    backgroundColor: '#FED7AA', // Red for pause
+    backgroundColor: Colors.light.secondary, // Dynamic pause button background
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   editButton: {
-    backgroundColor: '#FACC15', // Golden yellow for edit
+    backgroundColor: Colors.light.primary, // Dynamic edit button background
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   modalContainer: {
     flex: 1,
@@ -124,7 +115,7 @@ export const styles = StyleSheet.create({
   },
   modalContent: {
     width: '90%',
-    backgroundColor: '#FFFFFF', // White background for the modal
+    backgroundColor: Colors.light.background, // Dynamic modal background
     borderRadius: 12,
     padding: 20,
     alignItems: 'center',
@@ -136,7 +127,7 @@ export const styles = StyleSheet.create({
   },
   budgetContainer: {
     marginVertical: 10,
-    backgroundColor: '#5B21B6', // Dark purple background for the budget container
+    backgroundColor: Colors.light.secondary, // Dynamic budget container background
     borderRadius: 12,
     padding: 15,
     shadowColor: '#000',
@@ -146,23 +137,24 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   progressBar: {
-    height: 14, // Slightly taller for better visibility
-    backgroundColor: '#CBD5E1', // Cool Blue-Gray for the background of the progress bar
-    borderRadius: 7, // Rounded corners
+    height: 14,
+    backgroundColor: Colors.light.secondary, // Dynamic progress bar background
+    borderRadius: 7,
     overflow: 'hidden',
     marginTop: 10,
-    width: '100%', // Ensure the progress bar spans the full width of the container
+    width: '100%',
   },
   progress: {
     height: '100%',
     borderRadius: 7,
+    backgroundColor: Colors.light.primary, // Dynamic progress color
   },
   total: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingVertical: 10,
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB', // Soft Gray divider
+    borderTopColor: Colors.light.primary, // Dynamic divider color
     marginTop: 10,
   },
 });
@@ -170,28 +162,23 @@ export const styles = StyleSheet.create({
 export const commonStyles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: '#D1D5DB', // Light gray border
+    borderColor: Colors.light.primary, // Dynamic border color
     padding: 12,
     marginBottom: 10,
     borderRadius: 8,
-    backgroundColor: '#FFFFFF', // White background for inputs
-    color: '#1F2937', // Dark gray text for inputs
+    backgroundColor: Colors.light.background, // Dynamic input background
+    color: Colors.light.text, // Dynamic input text color
     fontSize: 16,
   },
   button: {
-    backgroundColor: '#A7F3D0', // Light Mint for buttons
+    backgroundColor: Colors.light.primary, // Dynamic button background
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
     marginBottom: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
   buttonText: {
-    color: '#1F2937', // Dark Gray for button text
+    color: Colors.light.background, // Dynamic button text color
     fontWeight: 'bold',
     fontSize: 16,
   },
