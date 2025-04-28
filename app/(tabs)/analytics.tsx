@@ -6,6 +6,8 @@ import { styles } from '../../styles';
 import { useItemManager } from '../../hooks/useItemManager';
 import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManager';
 import { ThemedText } from '@/components/ThemedText';
+import { useThemeColor } from '@/hooks/useThemeColor';
+import { ThemedView } from '@/components/ThemedView';
 
 type PieChartData = {
   name: string;
@@ -16,6 +18,7 @@ type PieChartData = {
 };
 
 export default function AnalyticsScreen() {
+  const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
   const { groupedItems } = useItemManager();
   const { monthlyPayments } = useRecurringPaymentManager();
   const [pieChartData, setPieChartData] = useState<PieChartData[]>([]);
@@ -41,7 +44,7 @@ export default function AnalyticsScreen() {
       name: key,
       amount: value,
       color: getRandomColor(index),
-      legendFontColor: '#FFFFFF',
+      legendFontColor: '#FFFFFF', // White font for legend
       legendFontSize: 14,
     }));
 
@@ -50,12 +53,12 @@ export default function AnalyticsScreen() {
   }, [groupedItems, monthlyPayments]); // Ensure groupedItems and monthlyPayments are the only dependencies
 
   const getRandomColor = (index: number) => {
-    const colors = ['#F87171', '#34D399', '#60A5FA', '#FBBF24', '#A78BFA', '#FACC15'];
+    const colors = ['#FACC15', '#34D399', '#60A5FA', '#FBBF24', '#A78BFA', '#F87171']; // Yellow, green, and other colors
     return colors[index % colors.length];
   };
 
   return (
-    <LinearGradient colors={['#8B5CF6', '#5B21B6']} style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor }]}>
       <ScrollView>
         <ThemedText type="title" style={styles.header}>
           Spending Insights
@@ -71,7 +74,7 @@ export default function AnalyticsScreen() {
               width={Dimensions.get('window').width - 40} // Full width minus padding
               height={220}
               chartConfig={{
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // White for chart labels
               }}
               accessor="amount"
               backgroundColor="transparent"
@@ -85,6 +88,6 @@ export default function AnalyticsScreen() {
           </ThemedText>
         )}
       </ScrollView>
-    </LinearGradient>
+    </ThemedView>
   );
 }
