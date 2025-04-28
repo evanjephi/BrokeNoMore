@@ -5,6 +5,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { styles, commonStyles } from '../../styles';
 import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManager';
 import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
 
 export default function ExploreScreen() {
   const {
@@ -108,14 +109,14 @@ export default function ExploreScreen() {
         </View>
 
         {/* Payments List Section */}
-        <View style={styles.section}>
+        <ThemedView style={styles.section}>
           <ThemedText type="subtitle" style={styles.sectionHeader}>
             Existing Payments
           </ThemedText>
           {monthlyPayments.length > 0 ? (
             monthlyPayments.map((payment) => (
-              <View key={payment.id} style={[styles.item, { paddingVertical: 10 }]}>
-                <View style={{ flex: 3, marginRight: 10 }}>
+              <ThemedView key={payment.id} style={[styles.item, { paddingVertical: 10 }]}>
+                <ThemedView style={{ flex: 3, marginRight: 10 }}>
                   <ThemedText style={styles.itemName}>{payment.name}</ThemedText>
                   <ThemedText style={styles.itemPrice}>
                     ${payment.price ? payment.price.toFixed(2) : '0.00'} {/* Ensure price is valid */}
@@ -123,8 +124,8 @@ export default function ExploreScreen() {
                   <ThemedText style={{ color: '#A7F3D0', fontSize: 14 }}>
                     Recurs on: {payment.date}th of each month {/* Display the recurring date */}
                   </ThemedText>
-                </View>
-                <View style={[styles.buttonGroup, { flex: 1 }]}>
+                </ThemedView>
+                <ThemedView style={[styles.buttonGroup, { flex: 1 }]}>
                   <TouchableOpacity onPress={() => togglePausePayment(payment.id)} style={styles.pauseButton}>
                     <ThemedText style={commonStyles.buttonText}>
                       {payment.paused ? 'Resume' : 'Pause'}
@@ -133,13 +134,13 @@ export default function ExploreScreen() {
                   <TouchableOpacity onPress={() => openEditModal(payment)} style={styles.editButton}>
                     <ThemedText style={commonStyles.buttonText}>Edit</ThemedText>
                   </TouchableOpacity>
-                </View>
-              </View>
+                </ThemedView>
+              </ThemedView>
             ))
           ) : (
             <ThemedText>No recurring payments yet.</ThemedText>
           )}
-        </View>
+        </ThemedView>
       </ScrollView>
 
       {/* Edit Modal */}
