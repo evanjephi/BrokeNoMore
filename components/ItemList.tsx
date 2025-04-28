@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { styles } from '../styles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
@@ -19,7 +19,7 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
               {date}
             </ThemedText>
             {items.map((item) => (
-              <View key={item.id} style={styles.item}>
+              <ThemedView key={item.id} style={styles.item}>
                 <ThemedText style={styles.itemName}>
                   {item.name}
                   {item.tag && (
@@ -29,12 +29,12 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
                   )}
                 </ThemedText>
                 <ThemedText style={styles.itemPrice}>${item.price.toFixed(2)}</ThemedText>
-              </View>
+              </ThemedView>
             ))}
-            <View style={styles.total}>
+            <ThemedView style={styles.total}>
               <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>Total:</ThemedText>
               <ThemedText type="defaultSemiBold" style={{ color: '#FACC15' }}>${total.toFixed(2)}</ThemedText>
-            </View>
+            </ThemedView>
           </ThemedView>
         );
       }}
