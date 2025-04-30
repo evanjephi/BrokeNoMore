@@ -4,8 +4,9 @@ import { Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
-import { Image } from 'react-native';
-
+import { HapticTab } from '@/components/HapticTab';
+import TabBarBackground from '@/components/ui/TabBarBackground';
+import { Platform } from 'react-native';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors'; // Centralized color constants
@@ -22,10 +23,18 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors.light.primary, // Use centralized color
-          tabBarInactiveTintColor: Colors.light.secondary, // Use centralized color
-          tabBarStyle: { backgroundColor: Colors.light.background }, // Consistent background color
+          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
           headerShown: false,
+          tabBarButton: HapticTab,
+          tabBarBackground: TabBarBackground,
+          tabBarStyle: Platform.select({
+            ios: {
+              // Use a transparent background on iOS to show the blur effect
+              position: 'absolute',
+              backgroundColor: Colors.light.background, // Consistent background color
+            },
+            default: { backgroundColor: Colors.light.background }, // Consistent background color
+          }),
         }}
       >
         <Tabs.Screen
