@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { TextInput, TouchableOpacity, View, Modal, ScrollView } from 'react-native';
+import { TextInput, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { styles, commonStyles } from '../../styles';
 import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManager';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function ExploreScreen() {
   const {
@@ -58,8 +59,11 @@ export default function ExploreScreen() {
     }
   };
 
+    const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
+  
+
   return (
-    <LinearGradient colors={['#8B5CF6', '#5B21B6']} style={styles.container}>
+    <ThemedView style={[styles.container, { backgroundColor }]}>
       <ScrollView>
         {/* Header Section */}
         <ThemedText type="title" style={styles.header}>
@@ -67,7 +71,7 @@ export default function ExploreScreen() {
         </ThemedText>
 
         {/* Input Section */}
-        <View style={[styles.section, { marginBottom: 20 }]}>
+        <ThemedView style={[styles.section, { marginBottom: 20 }]}>
           <ThemedText type="subtitle" style={styles.sectionHeader}>
             Add New Payment
           </ThemedText>
@@ -106,7 +110,7 @@ export default function ExploreScreen() {
           <TouchableOpacity style={commonStyles.button} onPress={addPayment}>
             <ThemedText style={commonStyles.buttonText}>Add Payment</ThemedText>
           </TouchableOpacity>
-        </View>
+        </ThemedView>
 
         {/* Payments List Section */}
         <ThemedView style={styles.section}>
@@ -145,8 +149,8 @@ export default function ExploreScreen() {
 
       {/* Edit Modal */}
       <Modal visible={isEditModalVisible} transparent animationType="slide">
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
+        <ThemedView style={styles.modalContainer}>
+          <ThemedView style={styles.modalContent}>
             <ThemedText type="title" style={styles.header}>
               Edit Payment
             </ThemedText>
@@ -165,7 +169,7 @@ export default function ExploreScreen() {
               onChangeText={setEditPrice}
               keyboardType="numeric"
             />
-            <View style={styles.buttonGroup}>
+            <ThemedView style={styles.buttonGroup}>
               <TouchableOpacity style={[styles.smallButton, { flex: 1 }]} onPress={saveEdit}>
                 <ThemedText style={commonStyles.buttonText}>Save</ThemedText>
               </TouchableOpacity>
@@ -181,10 +185,10 @@ export default function ExploreScreen() {
               >
                 <ThemedText style={commonStyles.buttonText}>Remove</ThemedText>
               </TouchableOpacity>
-            </View>
-          </View>
-        </View>
+            </ThemedView>
+          </ThemedView>
+        </ThemedView>
       </Modal>
-    </LinearGradient>
+    </ThemedView>
   );
 }
