@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { LinearGradient } from 'expo-linear-gradient';
 import { styles, commonStyles } from '../../styles';
 import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManager';
 import { ThemedText } from '@/components/ThemedText';
