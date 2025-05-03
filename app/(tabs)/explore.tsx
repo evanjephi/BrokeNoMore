@@ -58,8 +58,10 @@ export default function ExploreScreen() {
     }
   };
 
-    const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
-  
+  const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
+  const modalBackgroundColor = useThemeColor({}, 'background');
+  const cancelButtonColor = useThemeColor({}, 'primary');
+  const removeButtonColor = useThemeColor({}, 'error');
 
   return (
     <ThemedView style={[styles.container, { backgroundColor }]}>
@@ -149,7 +151,7 @@ export default function ExploreScreen() {
       {/* Edit Modal */}
       <Modal visible={isEditModalVisible} transparent animationType="slide">
         <ThemedView style={styles.modalContainer}>
-          <ThemedView style={styles.modalContent}>
+          <ThemedView style={[styles.modalContent, { backgroundColor: modalBackgroundColor }]}>
             <ThemedText type="title" style={styles.header}>
               Edit Payment
             </ThemedText>
@@ -173,13 +175,13 @@ export default function ExploreScreen() {
                 <ThemedText style={commonStyles.buttonText}>Save</ThemedText>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.smallButton, { flex: 1, backgroundColor: '#FDBA74' }]}
+                style={[styles.smallButton, { flex: 1, backgroundColor: cancelButtonColor }]}
                 onPress={() => setEditModalVisible(false)}
               >
                 <ThemedText style={commonStyles.buttonText}>Cancel</ThemedText>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.smallButton, { flex: 1, backgroundColor: '#EF4444' }]} // Red button for remove
+                style={[styles.smallButton, { flex: 1, backgroundColor: removeButtonColor }]} // Red button for remove
                 onPress={removeEdit}
               >
                 <ThemedText style={commonStyles.buttonText}>Remove</ThemedText>

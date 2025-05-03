@@ -6,8 +6,7 @@ import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import { HapticTab } from '@/components/HapticTab';
 import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Platform } from 'react-native';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Platform, useColorScheme } from 'react-native'; // Use built-in useColorScheme
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors'; // Centralized color constants
 
@@ -17,13 +16,13 @@ SplashScreen.preventAutoHideAsync();
 const ICON_SIZE = 28; // Set a consistent icon size
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme = useColorScheme(); // Use React Native's built-in hook
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+          tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
           headerShown: false,
           tabBarButton: HapticTab,
           tabBarBackground: TabBarBackground,

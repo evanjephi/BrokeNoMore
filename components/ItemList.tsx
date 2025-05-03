@@ -3,9 +3,11 @@ import { FlatList } from 'react-native';
 import { styles } from '../styles';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export function ItemList({ groupedItems }: { groupedItems: Record<string, { name: string; price: number; id: string; tag?: string }[]> }) {
   const sections = Object.entries(groupedItems); // Already sorted in descending order in useItemManager
+  const highlightColor = useThemeColor({}, 'primary'); // Dynamically fetch the primary color
 
   return (
     <FlatList
@@ -32,8 +34,10 @@ export function ItemList({ groupedItems }: { groupedItems: Record<string, { name
               </ThemedView>
             ))}
             <ThemedView style={styles.total}>
-              <ThemedText type="defaultSemiBold" style={{ color: '#FFFFFF' }}>Total:</ThemedText>
-              <ThemedText type="defaultSemiBold" style={{ color: '#FACC15' }}>${total.toFixed(2)}</ThemedText>
+            <ThemedText style={styles.totalText}>Total:</ThemedText>
+            <ThemedText style={styles.totalText}>
+              ${total.toFixed(2)}
+            </ThemedText>
             </ThemedView>
           </ThemedView>
         );

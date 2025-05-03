@@ -11,14 +11,16 @@ export const styles = StyleSheet.create({
   header: {
     fontSize: 23,
     fontWeight: 'bold',
-    color: Colors.light.text, // Dynamic text color
+    color: Colors.light.text, // Dynamic primary text color
     marginBottom: 10,
   },
   section: {
     marginBottom: 10,
-    backgroundColor: Colors.light.secondary, // Dynamic section background
+    backgroundColor: Colors.light.background, // Dynamic section background
     borderRadius: 12,
     padding: 10,
+    borderWidth: 1,
+    borderColor: Colors.light.border, // Dynamic border color
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
@@ -28,12 +30,12 @@ export const styles = StyleSheet.create({
   sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.light.primary, // Dynamic section header color
+    color: Colors.light.text, // Dynamic primary text color
     marginBottom: 10,
   },
   input: {
     borderWidth: 1,
-    borderColor: Colors.light.primary, // Dynamic border color
+    borderColor: Colors.light.border, // Dynamic border color
     padding: 10,
     marginBottom: 5,
     borderRadius: 8,
@@ -66,13 +68,13 @@ export const styles = StyleSheet.create({
   },
   itemName: {
     fontSize: 16,
-    fontWeight: '600',
-    color: Colors.light.text, // Dynamic item name color
+    fontWeight: '500',
+    color: Colors.light.text, // Dynamic primary text color
   },
   itemPrice: {
     fontSize: 14,
     fontWeight: '400',
-    color: Colors.light.primary, // Dynamic item price color
+    color: Colors.light.secondaryText, // Dynamic secondary text color
   },
   buttonGroup: {
     flexDirection: 'row',
@@ -154,8 +156,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 10,
     borderTopWidth: 1,
-    borderTopColor: Colors.light.primary, // Dynamic divider color
+    borderTopColor: Colors.light.border, // Dynamic divider color
     marginTop: 10,
+  },
+  totalText: {
+    fontWeight: 'bold', // Ensure this is applied
+    fontSize: 16,
   },
 });
 
