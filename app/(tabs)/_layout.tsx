@@ -31,9 +31,9 @@ export default function RootLayout() {
             ios: {
               // Use a transparent background on iOS to show the blur effect
               position: 'absolute',
-              backgroundColor: Colors.light.background, // Consistent background color
+              backgroundColor: Colors[colorScheme ?? 'light'].background, // Dynamically adapt to theme
             },
-            default: { backgroundColor: Colors.light.background }, // Consistent background color
+            default: { backgroundColor: Colors[colorScheme ?? 'light'].background }, // Dynamically adapt to theme
           }),
         }}
       >
