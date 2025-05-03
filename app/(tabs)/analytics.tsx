@@ -44,7 +44,7 @@ export default function AnalyticsScreen() {
       name: key,
       amount: value,
       color: getRandomColor(index),
-      legendFontColor: '#FFFFFF', // White font for legend
+      legendFontColor: '#000000', // Default to black or any desired color
       legendFontSize: 14,
     }));
 
@@ -74,7 +74,7 @@ export default function AnalyticsScreen() {
               width={Dimensions.get('window').width - 40} // Full width minus padding
               height={220}
               chartConfig={{
-                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, // White for chart labels
+                color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // Default to black with dynamic opacity
               }}
               accessor="amount"
               backgroundColor="transparent"
