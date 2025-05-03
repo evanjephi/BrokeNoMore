@@ -60,7 +60,7 @@ export default function ExploreScreen() {
 
   const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
   const modalBackgroundColor = useThemeColor({}, 'background');
-  const cancelButtonColor = useThemeColor({}, 'primary');
+  const cancelButtonColor = useThemeColor({}, 'tint');
   const removeButtonColor = useThemeColor({}, 'error');
 
   return (
