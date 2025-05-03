@@ -11,26 +11,25 @@ export const styles = StyleSheet.create({
   header: {
     fontSize: 23,
     fontWeight: 'bold',
-    color: Colors.light.text, // Dynamic primary text color
+    color: Colors.light.tint, // Dynamic primary text color
     marginBottom: 10,
   },
   section: {
     marginBottom: 10,
-    backgroundColor: Colors.light.background, // Dynamic section background
     borderRadius: 12,
     padding: 10,
     borderWidth: 1,
-    borderColor: Colors.light.border, // Dynamic border color
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    
   },
   sectionHeader: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: Colors.light.text, // Dynamic primary text color
+    color: Colors.light.tint, // Dynamic primary text color
     marginBottom: 10,
   },
   input: {
@@ -56,7 +55,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonText: {
-    color: Colors.light.background, // Dynamic button text color
+    color: '#FFFFFF', // White text for all buttons
     fontWeight: 'bold',
     fontSize: 16,
   },
@@ -74,7 +73,7 @@ export const styles = StyleSheet.create({
   itemPrice: {
     fontSize: 14,
     fontWeight: '400',
-    color: Colors.light.secondaryText, // Dynamic secondary text color
+    color: Colors.light.text, // Dynamic secondary text color
   },
   buttonGroup: {
     flexDirection: 'row',
@@ -94,7 +93,7 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   pauseButton: {
-    backgroundColor: Colors.light.secondary, // Dynamic pause button background
+    backgroundColor: '#FFB74D', // Warm Amber for Pause
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -102,7 +101,31 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   editButton: {
-    backgroundColor: Colors.light.primary, // Dynamic edit button background
+    backgroundColor: '#003366', // Soft Blue for Edit
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  saveButton: {
+    backgroundColor: '#66BB6A', // Emerald Green for Save
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cancelButton: {
+    backgroundColor: '#B0BEC5', // Cool Gray for Cancel
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  removeButton: {
+    backgroundColor: '#E53935', // Strong Red for Remove
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -129,7 +152,6 @@ export const styles = StyleSheet.create({
   },
   budgetContainer: {
     marginVertical: 10,
-    backgroundColor: Colors.light.secondary, // Dynamic budget container background
     borderRadius: 12,
     padding: 15,
     shadowColor: '#000',
@@ -177,7 +199,7 @@ export const commonStyles = StyleSheet.create({
     fontSize: 16,
   },
   button: {
-    backgroundColor: Colors.light.primary, // Dynamic button background
+    backgroundColor: Colors.light.tint, // Dynamic button background
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
