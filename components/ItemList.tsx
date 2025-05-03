@@ -7,7 +7,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 
 export function ItemList({ groupedItems }: { groupedItems: Record<string, { name: string; price: number; id: string; tag?: string }[]> }) {
   const sections = Object.entries(groupedItems); // Already sorted in descending order in useItemManager
-  const highlightColor = useThemeColor({}, 'primary'); // Dynamically fetch the primary color
+  const highlightColor = useThemeColor({}, 'tint'); // Dynamically fetch the primary color
 
   return (
     <FlatList
