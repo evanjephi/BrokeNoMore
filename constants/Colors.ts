@@ -5,13 +5,14 @@
 
 const tintColorLight = '#003366';
 const tintColorDark = '#fff';
+const backgroundLight = '#945f03'; //yelowish color for light mode
+const backgroundDark = '#77d19e'; // greenish color for dark mode
 
 export const Colors = {
   light: {
     text: '#11181C', // Darker text for better contrast when using light mode
     background: '#fff', // White background for light mode
-    backgroundDark: '#F0F0F0', // Slightly darker background for better contrast
-    backgroundLight: '#e3e1e1',
+    subTitleColor: backgroundLight, // Light gray background for secondary elements
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#687076',
@@ -22,8 +23,7 @@ export const Colors = {
   dark: {
     text: '#ECEDEE', // Lighter text for better contrast when using dark mode
     background: '#121212', // Dark background for dark mode
-    backgroundLight: '#1F1F1F', // Slightly lighter background for better contrast
-    backgroundDark: '#1F1F1F', // Darker background for better contrast
+    subTitleColor: backgroundDark, // Light gray background for secondary elements
     tint: tintColorDark,  
     icon: '#9BA1A6', // Lighter icon color for better contrast
     tabIconDefault: '#9BA1A6',
