@@ -59,6 +59,7 @@ export default function ExploreScreen() {
   };
 
   const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
+  const textColor = useThemeColor({}, 'text'); // Get theme-based text color
   const modalBackgroundColor = useThemeColor({}, 'background');
   const cancelButtonColor = useThemeColor({}, 'tint');
   const removeButtonColor = useThemeColor({}, 'error');
@@ -67,24 +68,24 @@ export default function ExploreScreen() {
     <ThemedView style={[styles.container, { backgroundColor }]}>
       <ScrollView>
         {/* Header Section */}
-        <ThemedText type="title" style={styles.header}>
+        <ThemedText type="title" style={[styles.header, { color: textColor }]}>
           Manage Recurring Payments
         </ThemedText>
 
         {/* Input Section */}
         <ThemedView style={[styles.section, { marginBottom: 20 }]}>
-          <ThemedText type="subtitle" style={styles.sectionHeader}>
+          <ThemedText type="subtitle" style={[styles.sectionHeader, { color: textColor }]}>
             Add New Payment
           </ThemedText>
           <TextInput
-            style={commonStyles.input}
+            style={[commonStyles.input, { color: textColor }]}
             placeholder="Payment Name"
             placeholderTextColor="#666"
             value={paymentName}
             onChangeText={setPaymentName}
           />
           <TextInput
-            style={commonStyles.input}
+            style={[commonStyles.input, { color: textColor }]}
             placeholder="Payment Price"
             placeholderTextColor="#666"
             value={paymentPrice}
@@ -92,7 +93,7 @@ export default function ExploreScreen() {
             keyboardType="numeric"
           />
           <TextInput
-            style={commonStyles.input}
+            style={[commonStyles.input, { color: textColor }]}
             placeholder="Payment Date (1-31)"
             placeholderTextColor="#666"
             value={paymentDate ? paymentDate.toString() : ''}
@@ -101,7 +102,7 @@ export default function ExploreScreen() {
           />
           <Picker
             selectedValue={recurrence}
-            style={commonStyles.input}
+            style={[commonStyles.input, { color: textColor }]}
             onValueChange={(itemValue) => setRecurrence(itemValue)}
           >
             <Picker.Item label="Monthly" value="monthly" />
@@ -115,15 +116,17 @@ export default function ExploreScreen() {
 
         {/* Payments List Section */}
         <ThemedView style={styles.section}>
-          <ThemedText type="subtitle" style={styles.sectionHeader}>
+          <ThemedText type="subtitle" style={[styles.sectionHeader, { color: textColor }]}>
             Existing Payments
           </ThemedText>
           {monthlyPayments.length > 0 ? (
             monthlyPayments.map((payment) => (
               <ThemedView key={payment.id} style={[styles.item, { paddingVertical: 10 }]}>
                 <ThemedView style={{ flex: 3, marginRight: 10 }}>
-                  <ThemedText style={styles.itemName}>{payment.name}</ThemedText>
-                  <ThemedText style={styles.itemPrice}>
+                  <ThemedText style={[styles.itemName, { color: textColor }]}>
+                    {payment.name}
+                  </ThemedText>
+                  <ThemedText style={[styles.itemPrice, { color: textColor }]}>
                     ${payment.price ? payment.price.toFixed(2) : '0.00'} {/* Ensure price is valid */}
                   </ThemedText>
                   <ThemedText style={{ color: '#A7F3D0', fontSize: 14 }}>
@@ -143,7 +146,7 @@ export default function ExploreScreen() {
               </ThemedView>
             ))
           ) : (
-            <ThemedText>No recurring payments yet.</ThemedText>
+            <ThemedText style={{ color: textColor }}>No recurring payments yet.</ThemedText>
           )}
         </ThemedView>
       </ScrollView>
@@ -152,18 +155,18 @@ export default function ExploreScreen() {
       <Modal visible={isEditModalVisible} transparent animationType="slide">
         <ThemedView style={styles.modalContainer}>
           <ThemedView style={[styles.modalContent, { backgroundColor: modalBackgroundColor }]}>
-            <ThemedText type="title" style={styles.header}>
+            <ThemedText type="title" style={[styles.header, { color: textColor }]}>
               Edit Payment
             </ThemedText>
             <TextInput
-              style={[commonStyles.input, { width: '100%' }]} // Ensure consistent width
+              style={[commonStyles.input, { width: '100%', color: textColor }]}
               placeholder="Payment Name"
               placeholderTextColor="#666"
               value={editName}
               onChangeText={setEditName}
             />
             <TextInput
-              style={[commonStyles.input, { width: '100%' }]} // Ensure consistent width
+              style={[commonStyles.input, { width: '100%', color: textColor }]}
               placeholder="Payment Price"
               placeholderTextColor="#666"
               value={editPrice}
@@ -181,7 +184,7 @@ export default function ExploreScreen() {
                 <ThemedText style={commonStyles.buttonText}>Cancel</ThemedText>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.smallButton, { flex: 1, backgroundColor: removeButtonColor }]} // Red button for remove
+                style={[styles.smallButton, { flex: 1, backgroundColor: removeButtonColor }]}
                 onPress={removeEdit}
               >
                 <ThemedText style={commonStyles.buttonText}>Remove</ThemedText>
