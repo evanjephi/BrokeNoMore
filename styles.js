@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   header: {
     fontSize: 23,
     fontWeight: 'bold',
-    color: Colors.light.tint, // Dynamic primary text color
+    color: Colors.light.subTitleColor, // Dynamic primary text color
     marginBottom: 10,
   },
   section: {
