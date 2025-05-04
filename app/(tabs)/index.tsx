@@ -14,6 +14,7 @@ export default function HomeScreen() {
   const { filterTag, setFilterTag, groupedItems } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
   const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
+  const headerColor = useThemeColor({}, 'subTitleColor'); // Get theme-based header color
 
   const categories = ['All', 'Food', 'Grocery', 'Travel', 'Bills', 'Work', 'Other' ]; // Added "Grocery" to categories
 
@@ -74,7 +75,7 @@ export default function HomeScreen() {
           </>
         )}
       </ThemedView>
-      <ThemedText type="subtitle" style={styles.header}>
+      <ThemedText type="subtitle" style={[styles.header, { color: headerColor }]}>
         Expense Summary
       </ThemedText>
       <ItemList groupedItems={groupedItems} />
