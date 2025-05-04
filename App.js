@@ -5,34 +5,30 @@ import { useItemManager } from './hooks/useItemManager';
 import { ItemList } from './components/ItemList';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { useColorScheme } from 'react-native';
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function App() {
   const { itemName, setItemName, itemPrice, setItemPrice, items, addItem } = useItemManager();
-  const theme = useColorScheme();
+  const backgroundColor = useThemeColor({}, 'background'); // Dynamic background color
+  const textColor = useThemeColor({}, 'text'); // Dynamic text color
+  const inputBackgroundColor = useThemeColor({}, 'backgroundSecondary'); // Dynamic input background color
+  const placeholderColor = useThemeColor({}, 'icon'); // Dynamic placeholder color
 
   return (
-    <ThemedView
-      style={[
-        styles.container,
-        {
-          backgroundColor: theme === 'dark' ? '#5B21B6' : '#8B5CF6', // Adjust background for dark and light modes
-        },
-      ]}
-    >
-      <ThemedText type="title" style={[styles.header, { color: theme === 'dark' ? '#FFFFFF' : '#1F2937' }]}>
+    <ThemedView style={[styles.container, { backgroundColor }]}> {/* Dynamic background */}
+      <ThemedText type="title" style={[styles.header, { color: textColor }]}> {/* Dynamic text color */}
         BrokeNoMore
       </ThemedText>
       <TextInput
         style={[
           styles.input,
           {
-            color: theme === 'dark' ? '#FFFFFF' : '#1F2937', // Adjust text color for dark and light modes
-            backgroundColor: theme === 'dark' ? '#4C1D95' : '#FFFFFF', // Adjust input background
+            color: textColor, // Dynamic text color
+            backgroundColor: inputBackgroundColor, // Dynamic input background
           },
         ]}
         placeholder="Item Name"
-        placeholderTextColor={theme === 'dark' ? '#AAA' : '#666'}
+        placeholderTextColor={placeholderColor} // Dynamic placeholder color
         value={itemName}
         onChangeText={setItemName}
       />
@@ -40,12 +36,12 @@ export default function App() {
         style={[
           styles.input,
           {
-            color: theme === 'dark' ? '#FFFFFF' : '#1F2937', // Adjust text color for dark and light modes
-            backgroundColor: theme === 'dark' ? '#4C1D95' : '#FFFFFF', // Adjust input background
+            color: textColor, // Dynamic text color
+            backgroundColor: inputBackgroundColor, // Dynamic input background
           },
         ]}
         placeholder="Item Price"
-        placeholderTextColor={theme === 'dark' ? '#AAA' : '#666'}
+        placeholderTextColor={placeholderColor} // Dynamic placeholder color
         value={itemPrice}
         onChangeText={setItemPrice}
         keyboardType="numeric"
