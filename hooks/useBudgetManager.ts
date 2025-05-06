@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRecurringPaymentManager } from './useRecurringPaymentManager';
 
 export function useBudgetManager() {
   const [budget, setBudget] = useState<number | null>(null); // User-defined monthly budget
   const [spent, setSpent] = useState<number>(0); // Total spent for the current month
+  const { monthlyPayments } = useRecurringPaymentManager();
 
   const loadBudget = async () => {
     try {
@@ -27,11 +29,24 @@ export function useBudgetManager() {
 
   const calculateSpent = (groupedItems: Record<string, { price: number }[]>) => {
     const currentMonth = new Date().toISOString().slice(0, 7); // Format: YYYY-MM
+
+    // Calculate total spent from daily items
     const monthlyItems = Object.entries(groupedItems)
       .filter(([date]) => date.startsWith(currentMonth)) // Filter items for the current month
       .flatMap(([, items]) => items); // Flatten the array of items
 
-    const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+    const dailySpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+
+    // Calculate total spent from recurring payments
+    const recurringSpent = monthlyPayments.reduce((sum, payment) => {
+      if (!payment.paused) {
+        return sum + payment.price;
+      }
+      return sum;
+    }, 0);
+
+    // Combine daily spent and recurring spent
+    const totalSpent = dailySpent + recurringSpent;
     setSpent(totalSpent);
   };
 
