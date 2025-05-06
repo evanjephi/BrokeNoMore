@@ -26,12 +26,12 @@ export default function HomeScreen() {
 
   return (
     <ThemedView style={[styles.container, { backgroundColor }]}>
-      <ThemedText type="title" style={styles.header}>
+      <ThemedText type="subtitle" style={[styles.header, { color: headerColor }]}>
         Your Monthly Spendings
       </ThemedText>
 
       <TextInput
-        style={commonStyles.input}
+        style={[commonStyles.input, { backgroundColor }]}
         placeholder="Set Monthly Budget"
         placeholderTextColor="#666"
         value={budget ? budget.toString() : ''}
