@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: Colors.light.border, // Dynamic border color
     padding: 10,
     marginBottom: 5,
     borderRadius: 8,
@@ -109,7 +108,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   saveButton: {
-    backgroundColor: '#66BB6A', // Emerald Green for Save
+    backgroundColor: '#FFB74D', // Emerald Green for Save
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -190,7 +189,7 @@ export const styles = StyleSheet.create({
 export const commonStyles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: Colors.light.primary, // Dynamic border color
+    borderColor: Colors.light.text, // Dynamic border color
     padding: 12,
     marginBottom: 10,
     borderRadius: 8,
