@@ -6,6 +6,7 @@ export function useBudgetManager() {
   const [budget, setBudget] = useState<number | null>(null); // User-defined monthly budget
   const [spent, setSpent] = useState<number>(0); // Total spent for the current month
   const [pastMonthExpenses, setPastMonthExpenses] = useState<Record<string, number>>({}); // Store past month expenses
+  const [insights, setInsights] = useState<{ trends: string[]; recommendations: string[] }>({ trends: [], recommendations: [] }); // AI insights
   const { monthlyPayments } = useRecurringPaymentManager();
 
   const loadBudget = async () => {
@@ -48,7 +49,7 @@ export function useBudgetManager() {
     }
   };
 
-  const calculateSpent = (groupedItems: Record<string, { price: number }[]>) => {
+  const calculateSpent = (groupedItems: Record<string, { price: number; tag?: string }[]>) => {
     const currentMonth = new Date().toISOString().slice(0, 7); // Format: YYYY-MM
 
     // Calculate total spent from daily items
@@ -69,6 +70,35 @@ export function useBudgetManager() {
     // Combine daily spent and recurring spent
     const totalSpent = dailySpent + recurringSpent;
     setSpent(totalSpent);
+
+    // Generate AI insights
+    generateInsights(groupedItems, totalSpent);
+  };
+
+  const generateInsights = (groupedItems: Record<string, { price: number; tag?: string }[]>, totalSpent: number) => {
+    const trends: string[] = [];
+    const recommendations: string[] = [];
+
+    // Analyze spending trends
+    const categoryTotals: Record<string, number> = {};
+    Object.values(groupedItems).flat().forEach((item) => {
+      const tag = item.tag || 'Uncategorized';
+      categoryTotals[tag] = (categoryTotals[tag] || 0) + item.price;
+    });
+
+    const mostSpentCategory = Object.entries(categoryTotals).sort((a, b) => b[1] - a[1])[0];
+    if (mostSpentCategory) {
+      trends.push(`You spent the most on ${mostSpentCategory[0]} this month.`);
+    }
+
+    // Budget recommendations
+    if (budget && totalSpent > budget) {
+      recommendations.push('Consider increasing your budget or reducing expenses.');
+    } else if (budget && totalSpent < budget * 0.8) {
+      recommendations.push('Great job! You are spending well within your budget.');
+    }
+
+    setInsights({ trends, recommendations });
   };
 
   const resetMonthlyData = async () => {
@@ -102,5 +132,6 @@ export function useBudgetManager() {
     spent,
     calculateSpent,
     pastMonthExpenses, // Expose past month expenses
+    insights, // Expose AI insights
   };
 }
