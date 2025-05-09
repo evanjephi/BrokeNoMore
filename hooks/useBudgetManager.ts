@@ -5,6 +5,7 @@ import { useRecurringPaymentManager } from './useRecurringPaymentManager';
 export function useBudgetManager() {
   const [budget, setBudget] = useState<number | null>(null); // User-defined monthly budget
   const [spent, setSpent] = useState<number>(0); // Total spent for the current month
+  const [pastMonthExpenses, setPastMonthExpenses] = useState<Record<string, number>>({}); // Store past month expenses
   const { monthlyPayments } = useRecurringPaymentManager();
 
   const loadBudget = async () => {
@@ -24,6 +25,26 @@ export function useBudgetManager() {
       setBudget(newBudget);
     } catch (error) {
       console.error('Failed to save budget to storage:', error);
+    }
+  };
+
+  const loadPastMonthExpenses = async () => {
+    try {
+      const storedExpenses = await AsyncStorage.getItem('pastMonthExpenses');
+      if (storedExpenses) {
+        setPastMonthExpenses(JSON.parse(storedExpenses));
+      }
+    } catch (error) {
+      console.error('Failed to load past month expenses from storage:', error);
+    }
+  };
+
+  const savePastMonthExpenses = async (expenses: Record<string, number>) => {
+    try {
+      await AsyncStorage.setItem('pastMonthExpenses', JSON.stringify(expenses));
+      setPastMonthExpenses(expenses);
+    } catch (error) {
+      console.error('Failed to save past month expenses to storage:', error);
     }
   };
 
@@ -50,8 +71,29 @@ export function useBudgetManager() {
     setSpent(totalSpent);
   };
 
+  const resetMonthlyData = async () => {
+    const today = new Date();
+    const currentMonth = today.toISOString().slice(0, 7); // Format: YYYY-MM
+
+    // Save the current month's total spent as past month expense
+    const updatedPastExpenses = { ...pastMonthExpenses, [currentMonth]: spent };
+    await savePastMonthExpenses(updatedPastExpenses);
+
+    // Reset budget and spent for the new month
+    setBudget(null);
+    setSpent(0);
+    await AsyncStorage.removeItem('budget');
+  };
+
   useEffect(() => {
     loadBudget();
+    loadPastMonthExpenses();
+
+    // Check if it's the first day of a new month
+    const today = new Date();
+    if (today.getDate() === 1) {
+      resetMonthlyData();
+    }
   }, []);
 
   return {
@@ -59,5 +101,6 @@ export function useBudgetManager() {
     setBudget: saveBudget,
     spent,
     calculateSpent,
+    pastMonthExpenses, // Expose past month expenses
   };
 }
