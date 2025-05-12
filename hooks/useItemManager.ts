@@ -82,11 +82,9 @@ export function useItemManager() {
     );
 
     if (uniqueRecurringItems.length > 0) {
-      setItems((prevItems) => {
-        const updatedItems = [...prevItems, ...uniqueRecurringItems];
-        saveItems(updatedItems);
-        return updatedItems;
-      });
+      const updatedItems = [...items, ...uniqueRecurringItems];
+      setItems(updatedItems);
+      saveItems(updatedItems);
     }
   }, [monthlyPayments]); // Removed `items` from dependencies to prevent infinite loop
 
