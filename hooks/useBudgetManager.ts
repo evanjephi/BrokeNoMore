@@ -51,7 +51,7 @@ export function useBudgetManager() {
       .filter(([date]) => date.startsWith(currentMonth))
       .flatMap(([, items]) => items);
 
-    const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+    const totalSpent = monthlyItems.reduce((sum, item: { price: number }) => sum + item.price, 0);
     setSpent(totalSpent);
   };
 
@@ -67,6 +67,22 @@ export function useBudgetManager() {
 
     initialize();
   }, []);
+
+  useEffect(() => {
+    const calculateSpent = async () => {
+      const groupedItems: Record<string, { price: number }[]> = {}; // Replace with actual grouped items logic
+      const currentMonth = new Date().toISOString().slice(0, 7);
+
+      const monthlyItems = Object.entries(groupedItems)
+        .filter(([date]) => date.startsWith(currentMonth))
+        .flatMap(([, items]) => items);
+
+      const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+      setSpent(totalSpent);
+    };
+
+    calculateSpent();
+  }, [budget]);
 
   return {
     budget,
