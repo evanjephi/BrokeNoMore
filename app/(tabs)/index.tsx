@@ -11,7 +11,7 @@ import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
   const { filterTag, setFilterTag, groupedItems } = useItemManager();
-  const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
+  const { budget, setBudget, spent, calculateSpent } = useBudgetManager(groupedItems);
   const backgroundColor = useThemeColor({}, 'background');
   const rawTextColor = useThemeColor({}, 'text');
   const textColor = typeof rawTextColor === 'string' ? rawTextColor : '#000';
