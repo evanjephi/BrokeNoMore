@@ -1,7 +1,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export function useBudgetManager(groupedItems: Record<string, { price: number }[]>) {
+const groupedItems: Record<string, { price: number }[]> = {}; // Replace with actual grouped items logic
+
+export function useBudgetManager() {
   const [budget, setBudget] = useState<number | null>(null);
   const [spent, setSpent] = useState<number>(0);
   const [pastMonthExpenses, setPastMonthExpenses] = useState<Record<string, number>>({});
