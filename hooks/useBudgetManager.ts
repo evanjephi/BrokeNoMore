@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export function useBudgetManager() {
+export function useBudgetManager(groupedItems: Record<string, { price: number }[]>) {
   const [budget, setBudget] = useState<number | null>(null);
   const [spent, setSpent] = useState<number>(0);
   const [pastMonthExpenses, setPastMonthExpenses] = useState<Record<string, number>>({});
@@ -70,7 +70,6 @@ export function useBudgetManager() {
 
   useEffect(() => {
     const calculateSpent = async () => {
-      const groupedItems: Record<string, { price: number }[]> = {}; // Replace with actual grouped items logic
       const currentMonth = new Date().toISOString().slice(0, 7);
 
       const monthlyItems = Object.entries(groupedItems)
