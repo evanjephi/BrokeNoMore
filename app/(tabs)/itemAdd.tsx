@@ -8,7 +8,9 @@ import { ThemedView } from '@/components/ThemedView';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
-  const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
+  const backgroundColor = useThemeColor({}, 'background');
+  const rawTextColor = useThemeColor({}, 'text');
+  const textColor = typeof rawTextColor === 'string' ? rawTextColor : '#000';
   const { itemName, setItemName, itemPrice, setItemPrice, itemTag, setItemTag, addItem } = useItemManager();
 
   const categories = ['All', 'Food', 'Grocery', 'Bills', 'Car Expense', 'Travel', 'Work', 'Other']; // Added "Grocery" to categories
