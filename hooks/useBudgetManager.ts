@@ -74,20 +74,23 @@ const calculateSpent = (groupedItems: Record<string, { price: number }[]>) => {
     initialize();
   }, []);
 
-  useEffect(() => {
-    const calculateSpent = async () => {
-      const currentMonth = new Date().toISOString().slice(0, 7);
+useEffect(() => {
+  const calculateSpent = async () => {
+    const currentMonth = new Date().toISOString().slice(0, 7);
 
-      const monthlyItems = Object.entries(groupedItems)
-        .filter(([date]) => date.startsWith(currentMonth))
-        .flatMap(([, items]) => items);
+    const monthlyItems = Object.entries(groupedItems)
+      .filter(([date]) => {
+        const [day, month, year] = date.split('-');
+        return `${year}-${month}` === currentMonth;
+      })
+      .flatMap(([, items]) => items);
 
-      const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
-      setSpent(totalSpent);
-    };
+    const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+    setSpent(totalSpent);
+  };
 
-    calculateSpent();
-  }, [budget]);
+  calculateSpent();
+}, [budget]);
 
   return {
     budget,
