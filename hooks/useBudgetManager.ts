@@ -46,16 +46,20 @@ export function useBudgetManager() {
     }
   };
 
-  const calculateSpent = (groupedItems: Record<string, { price: number }[]>) => {
-    const currentMonth = new Date().toISOString().slice(0, 7);
+const calculateSpent = (groupedItems: Record<string, { price: number }[]>) => {
+  const currentMonth = new Date().toISOString().slice(0, 7); // "2025-05"
 
-    const monthlyItems = Object.entries(groupedItems)
-      .filter(([date]) => date.startsWith(currentMonth))
-      .flatMap(([, items]) => items);
+  const monthlyItems = Object.entries(groupedItems)
+    .filter(([date]) => {
+      const [day, month, year] = date.split('-'); // Split DD-MM-YYYY
+      return `${year}-${month}` === currentMonth;
+    })
+    .flatMap(([, items]) => items);
 
-    const totalSpent = monthlyItems.reduce((sum, item: { price: number }) => sum + item.price, 0);
-    setSpent(totalSpent);
-  };
+  const totalSpent = monthlyItems.reduce((sum, item) => sum + item.price, 0);
+  setSpent(totalSpent);
+};
+
 
   useEffect(() => {
     const initialize = async () => {
