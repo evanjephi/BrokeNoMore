@@ -24,7 +24,6 @@ export default function HomeScreen() {
 
   const handleAddItem = () => {
     addItem();
-    calculateSpent(groupedItems); // <-- Add this line. added this line to recalculate spent after adding an item
   };
 
   const progress = budget ? Math.min((spent / budget) * 100, 100) : 0;
