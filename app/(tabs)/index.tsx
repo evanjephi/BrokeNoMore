@@ -16,7 +16,7 @@ export default function HomeScreen() {
   const rawTextColor = useThemeColor({}, 'text');
   const textColor = typeof rawTextColor === 'string' ? rawTextColor : '#000';
 
-  const categories = ['All', 'Food', 'Grocery', 'Travel', 'Bills', 'Work', 'Other'];
+  const categories = ['All', 'Food', 'Grocery', 'Bills', 'Car Expense', 'Travel', 'Work', 'Other'];
 
   useEffect(() => {
     calculateSpent(groupedItems);
