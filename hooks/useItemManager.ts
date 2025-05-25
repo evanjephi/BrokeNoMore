@@ -118,7 +118,7 @@ export function useItemManager() {
     setItemTag,
     filterTag,
     setFilterTag,
-    groupedItems: sortedGroupedItems, // Return sorted groupedItems
+    groupedItems: sortedGroupedItems, // Return sorted groupedItem
     addItem,
   };
 }
