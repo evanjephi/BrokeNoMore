@@ -11,7 +11,7 @@ export default function HomeScreen() {
   const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
   const { itemName, setItemName, itemPrice, setItemPrice, itemTag, setItemTag, addItem } = useItemManager();
 
-  const categories = ['Food', 'Travel', 'Bills', 'Work', 'Other', 'Grocery']; // Added "Grocery" to categories
+  const categories = ['All', 'Food', 'Grocery', 'Bills', 'Car Expense', 'Travel', 'Work', 'Other']; // Added "Grocery" to categories
 
   const handleAddItem = () => {
     addItem(); // Add the item
