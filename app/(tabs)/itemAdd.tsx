@@ -24,12 +24,12 @@ export default function HomeScreen() {
 
   return (
     <ThemedView style={[styles.container, { backgroundColor }]}>
-      <ThemedText type="title" style={styles.header}>
+      <ThemedText type="title" style={[styles.header, { color: textColor }]}>
         Daily Spending Tracker
       </ThemedText>
 
       <ThemedView style={[styles.section, { marginBottom: 20 }]}>
-        <ThemedText type="subtitle" style={styles.sectionHeader}>
+        <ThemedText type="subtitle" style={[styles.sectionHeader, { color: textColor }]}>
           Add New Spending
         </ThemedText>
 
