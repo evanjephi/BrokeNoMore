@@ -10,7 +10,7 @@ import { ThemedView } from '@/components/ThemedView';
 import { useThemeColor } from '@/hooks/useThemeColor';
 
 export default function HomeScreen() {
-  const { filterTag, setFilterTag, groupedItems } = useItemManager();
+  const { filterTag, setFilterTag, groupedItems, addItem } = useItemManager();
   const { budget, setBudget, spent, calculateSpent } = useBudgetManager();
   const backgroundColor = useThemeColor({}, 'background');
   const rawTextColor = useThemeColor({}, 'text');
@@ -21,6 +21,11 @@ export default function HomeScreen() {
   useEffect(() => {
     calculateSpent(groupedItems);
   }, [groupedItems]);
+
+  const handleAddItem = () => {
+    addItem();
+    calculateSpent(groupedItems); // <-- Add this line. added this line to recalculate spent after adding an item
+  };
 
   const progress = budget ? Math.min((spent / budget) * 100, 100) : 0;
 
