@@ -78,12 +78,13 @@ export default function ExploreScreen() {
             Add New Payment
           </ThemedText>
           <TextInput
-            style={[commonStyles.input, { color: textColor }]}
+            style={commonStyles.input}
             placeholder="Payment Name"
             placeholderTextColor="#666"
             value={paymentName}
             onChangeText={setPaymentName}
           />
+          
           <TextInput
             style={[commonStyles.input, { color: textColor }]}
             placeholder="Payment Price"
