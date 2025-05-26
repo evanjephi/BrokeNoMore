@@ -84,9 +84,9 @@ export default function ExploreScreen() {
             value={paymentName}
             onChangeText={setPaymentName}
           />
-          
+
           <TextInput
-            style={[commonStyles.input, { color: textColor }]}
+            style={commonStyles.input}
             placeholder="Payment Price"
             placeholderTextColor="#666"
             value={paymentPrice}
