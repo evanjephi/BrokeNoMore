@@ -189,12 +189,12 @@ export const styles = StyleSheet.create({
 export const commonStyles = StyleSheet.create({
   input: {
     borderWidth: 1,
-    borderColor: Colors.light.text, // Dynamic border color
+    borderColor: Colors.light.inputBackground, // Dynamic border color
     padding: 12,
     marginBottom: 10,
     borderRadius: 8,
-    backgroundColor: Colors.light.background, // Dynamic input background
-    color: Colors.light.text, // Dynamic input text color
+    backgroundColor: Colors.light.inputBackground, // Dynamic input background
+    color: Colors.light.inputBackground, // Dynamic input text color
     fontSize: 16,
   },
   button: {
