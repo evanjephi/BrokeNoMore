@@ -181,7 +181,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   totalText: {
-    fontWeight: 'bold', // Ensure this is applied
+    fontWeight: 'bold',
     fontSize: 16,
   },
 });
