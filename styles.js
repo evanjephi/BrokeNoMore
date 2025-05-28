@@ -170,7 +170,7 @@ export const styles = StyleSheet.create({
   progress: {
     height: '100%',
     borderRadius: 7,
-    backgroundColor: Colors.light.primary, // Dynamic progress color
+    backgroundColor: Colors.light.primary, 
   },
   total: {
     flexDirection: 'row',
