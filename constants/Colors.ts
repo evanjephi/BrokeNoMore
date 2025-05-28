@@ -8,7 +8,7 @@ const tintColorDark = '#fff';
 const yellowTitleColorLight = '#003366'; //yelowish color for light mode
 const greenTitleColorDark = '#77d19e'; // greenish color for dark mode
 const bgDark = '#121212'; // Dark background color for dark mode
-const bgLight = '#fff'; // Light background color for light mode
+const bgLight = '#fff'; 
 
 export const Colors = {
   light: {
