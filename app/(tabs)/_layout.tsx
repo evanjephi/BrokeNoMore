@@ -8,7 +8,7 @@ import { HapticTab } from '@/components/HapticTab';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Platform, useColorScheme } from 'react-native'; // Use built-in useColorScheme
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors'; // Centralized color constants
+import { Colors } from '@/constants/Colors'; 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
