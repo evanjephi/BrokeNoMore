@@ -13,7 +13,7 @@ const bgLight = '#fff'; // Light background color for light mode
 export const Colors = {
   light: {
     text: '#11181C', // Darker text for better contrast when using light mode
-    background: bgLight, // White background for light mode
+    background: bgLight, 
     subTitleColor: yellowTitleColorLight, // Light gray background for secondary elements
     tint: tintColorLight,
     icon: '#687076',
