@@ -67,7 +67,6 @@ export default function ExploreScreen() {
   return (
     <ThemedView style={[styles.container, { backgroundColor }]}>
       <ScrollView>
-        {/* Header Section */}
         <ThemedText type="title" style={[styles.header, { color: textColor }]}>
           Manage Recurring Payments
         </ThemedText>
