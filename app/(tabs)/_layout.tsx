@@ -29,7 +29,7 @@ export default function RootLayout() {
           tabBarStyle: Platform.select({
             ios: {
               position: 'absolute',
-              backgroundColor: Colors[colorScheme ?? 'light'].background, // Dynamically adapt to theme
+              backgroundColor: Colors[colorScheme ?? 'light'].background, 
             },
             default: { backgroundColor: Colors[colorScheme ?? 'light'].background }, // Dynamically adapt to theme
           }),
