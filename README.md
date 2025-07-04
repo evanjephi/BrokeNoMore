@@ -2,7 +2,7 @@
 **a. Project Overview**
 - **Title**: Broke No More – Personal Finance Tracker
 - **Description**: 
-  - A mobile app designed to help users track their daily expenses, manage recurring payments, and analyze spending habits through visual insights.
+  - A mobile app designed to help users track their daily expenses, manage recurring payments, and analyze spending habits through visual insights. It helps tracking your expenses and be in control of your spending.
   - Features include real-time updates, category filtering, budget tracking, and spending analytics.
 
 #### **b. Key Features**
