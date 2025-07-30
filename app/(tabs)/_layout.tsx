@@ -10,13 +10,13 @@ import { Platform, useColorScheme } from 'react-native'; // Use built-in useColo
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import { Colors } from '@/constants/Colors'; 
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
+// Prevent the splash screen from auto-hiding before asset loading is complete
 SplashScreen.preventAutoHideAsync();
 
-const ICON_SIZE = 28; // Set a consistent icon size
+const ICON_SIZE = 28; //Set a consistent iconsize
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme(); // Use React Native's built-in hook
+  const colorScheme = useColorScheme(); //Use React Native's built-in hook
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
