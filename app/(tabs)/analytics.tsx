@@ -7,7 +7,7 @@ import { useRecurringPaymentManager } from '../../hooks/useRecurringPaymentManag
 import { ThemedText } from '@/components/ThemedText';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { ThemedView } from '@/components/ThemedView';
-
+//Get pie variable
 type PieChartData = {
   name: string;
   amount: number;
