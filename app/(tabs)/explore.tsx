@@ -34,7 +34,7 @@ export default function ExploreScreen() {
   const openEditModal = (payment: { id: string; name: string; price: number }) => {
     setEditPaymentId(payment.id);
     setEditName(payment.name);
-    setEditPrice(payment.price ? payment.price.toString() : ''); // Ensure price is a string or empty
+    setEditPrice(payment.price ? payment.price.toString() : ''); // Ensuring price is a string or empty
     setEditModalVisible(true);
   };
 
@@ -58,8 +58,8 @@ export default function ExploreScreen() {
     }
   };
 
-  const backgroundColor = useThemeColor({}, 'background'); // Get theme-based background color
-  const textColor = useThemeColor({}, 'text'); // Get theme-based text color
+  const backgroundColor = useThemeColor({}, 'background'); // Getting theme-based background color
+  const textColor = useThemeColor({}, 'text'); // Getting theme-based text color
   const modalBackgroundColor = useThemeColor({}, 'background');
   const cancelButtonColor = useThemeColor({}, 'tint');
   const removeButtonColor = useThemeColor({}, 'error');
